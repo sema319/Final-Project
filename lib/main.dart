@@ -59,6 +59,13 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
 
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'enter a password'
+              ),
+            ),
+
             Text("password:", style: TextStyle(fontSize: 20),
 
             ),
