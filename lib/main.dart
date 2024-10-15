@@ -59,6 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
 
+            Text(
+              "password:", style: TextStyle(fontSize: 20),
+            ),
+
             TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -66,17 +70,59 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
-            Text("password:", style: TextStyle(fontSize: 20),
-
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () { },
+              child: Text('Next'),
             ),
+
+            Text(
+              "name:", style: TextStyle(fontSize: 20),
+            ),
+
+            TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'enter your name'
+              ),
+            ),
+
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () { },
+              child: Text('Next'),
+            ),
+
+            Text(
+              "last name:", style: TextStyle(fontSize: 20),
+            ),
+
+            TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'enter your last name'
+              ),
+            ),
+
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () { },
+              child: Text('Next'),
+            ),
+
+
+
+
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+
     );
   }
 }
