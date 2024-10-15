@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
               onPressed: () { },
-              child: Text('Next'),
+              child: Text('register'),
             ),
 
 
