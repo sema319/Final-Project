@@ -70,13 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () { },
-              child: Text('Next'),
-            ),
 
             Text(
               "name:", style: TextStyle(fontSize: 20),
@@ -89,13 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () { },
-              child: Text('Next'),
-            ),
+
 
             Text(
               "last name:", style: TextStyle(fontSize: 20),
