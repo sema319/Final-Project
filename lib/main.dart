@@ -1,3 +1,4 @@
+import 'package:finalproject/views/HomePageScreen.dart';
 import 'package:finalproject/views/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -90,7 +91,10 @@ class _MyHomePageState extends State<MyHomePage> {
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
-              onPressed: () {},
+              onPressed: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',)));
+                },
               child: Text('log in'),
             ),
 
@@ -106,7 +110,17 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('create new account'),
             ),
 
-
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',)));
+              },
+              child: Text('HomePage'),
+            ),
 
 
           ],
@@ -116,3 +130,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
