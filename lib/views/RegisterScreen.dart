@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 
 
-class Registerscreen extends StatefulWidget {
-  const Registerscreen({super.key, required this.title});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key, required this.title});
 
 
 
   final String title;
 
   @override
-  State<Registerscreen> createState() => RegisterscreenPageState();
+  State<RegisterScreen> createState() => RegisterScreenPageState();
 }
 
-class RegisterscreenPageState extends State<Registerscreen> {
+class RegisterScreenPageState extends State<RegisterScreen> {
   int _counter = 0;
 
   void _incrementCounter() {
