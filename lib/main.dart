@@ -1,3 +1,4 @@
+import 'package:finalproject/views/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -99,8 +100,20 @@ class _MyHomePageState extends State<MyHomePage> {
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
-              onPressed: () { },
-              child: Text('register'),
+              onPressed: () {},
+              child: Text('log in'),
+            ),
+
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Registerscreen(title: 'register',)));
+              },
+              child: Text('create new account'),
             ),
 
 
