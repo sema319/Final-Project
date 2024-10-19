@@ -10,10 +10,10 @@ class RegisterScreen extends StatefulWidget {
   final String title;
 
   @override
-  State<RegisterScreen> createState() => RegisterScreenPageState();
+  State<RegisterScreen> createState() => RegisterscreenPageState();
 }
 
-class RegisterScreenPageState extends State<RegisterScreen> {
+class RegisterscreenPageState extends State<RegisterScreen> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -40,16 +40,6 @@ class RegisterScreenPageState extends State<RegisterScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
 
-            Text(
-              "password:", style: TextStyle(fontSize: 20),
-            ),
-
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'enter a password'
-              ),
-            ),
 
 
             Text(
@@ -73,6 +63,17 @@ class RegisterScreenPageState extends State<RegisterScreen> {
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'enter your last name'
+              ),
+            ),
+
+            Text(
+              "password:", style: TextStyle(fontSize: 20),
+            ),
+
+            TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'enter a password'
               ),
             ),
 

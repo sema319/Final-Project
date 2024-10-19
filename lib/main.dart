@@ -60,16 +60,6 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
 
-            Text(
-              "password:", style: TextStyle(fontSize: 20),
-            ),
-
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'enter a password'
-              ),
-            ),
 
 
             Text(
@@ -86,13 +76,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
             Text(
-              "last name:", style: TextStyle(fontSize: 20),
+              "password:", style: TextStyle(fontSize: 20),
             ),
 
             TextField(
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'enter your last name'
+                  hintText: 'enter a password'
               ),
             ),
 
