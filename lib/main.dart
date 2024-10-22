@@ -49,11 +49,27 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
+    appBar: AppBar(
 
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      //  backgroundColor: Theme.of(context).colorScheme.inversePrimary,
 
-        title: Text(widget.title),
+        title: IconButton(
+
+          icon: Icon(Icons.person),
+          color: Colors.black,
+
+          iconSize: 30,
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const EditProfileScreen(title: 'Edit Profile',)
+                )
+            );
+          },
+
+
+        ),
+
       ),
       body: Center(
 
@@ -122,25 +138,6 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('HomePage'),
             ),
-
-            IconButton(
-              icon: Icon(Icons.person),
-              color: Colors.black,
-
-              iconSize: 50,
-
-
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const EditProfileScreen(title: 'Edit Profile',)
-                    )
-                );
-              },
-
-
-            )
-
 
 
           ],
