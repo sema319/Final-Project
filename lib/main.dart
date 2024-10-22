@@ -88,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'enter your name'
+
               ),
             ),
 

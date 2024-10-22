@@ -14,14 +14,9 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class RegisterScreenPageState extends State<RegisterScreen> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-
-      _counter++;
-    });
-  }
+  final _txtFirstName =  TextEditingController();
+  final _txtLastName =  TextEditingController();
+  final _txtPassword =  TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +38,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
 
 
             Text(
-              "name:", style: TextStyle(fontSize: 20),
+              "First Name:", style: TextStyle(fontSize: 20),
             ),
 
             TextField(
