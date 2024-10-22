@@ -10,10 +10,10 @@ class RegisterScreen extends StatefulWidget {
   final String title;
 
   @override
-  State<RegisterScreen> createState() => RegisterscreenPageState();
+  State<RegisterScreen> createState() => RegisterScreenPageState();
 }
 
-class RegisterscreenPageState extends State<RegisterScreen> {
+class RegisterScreenPageState extends State<RegisterScreen> {
   int _counter = 0;
 
   void _incrementCounter() {
