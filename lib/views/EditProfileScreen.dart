@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 
 
-class Homepagescreen extends StatefulWidget {
-  const Homepagescreen({super.key, required this.title});
+class EditProfileScreen extends StatefulWidget {
+  const EditProfileScreen({super.key, required this.title});
 
 
 
   final String title;
 
   @override
-  State<Homepagescreen> createState() => HomepagescreenPageState();
+  State<EditProfileScreen> createState() => EditProfileScreenPageState();
 }
 
-class HomepagescreenPageState extends State<Homepagescreen> {
+class EditProfileScreenPageState extends State<EditProfileScreen> {
   int _counter = 0;
 
   void _incrementCounter() {

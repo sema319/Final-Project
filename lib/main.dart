@@ -1,3 +1,4 @@
+import 'package:finalproject/views/EditProfileScreen.dart';
 import 'package:finalproject/views/HomePageScreen.dart';
 import 'package:finalproject/views/RegisterScreen.dart';
 import 'package:flutter/material.dart';
@@ -121,6 +122,25 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('HomePage'),
             ),
+
+            IconButton(
+              icon: Icon(Icons.person),
+              color: Colors.black,
+
+              iconSize: 50,
+
+
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const EditProfileScreen(title: 'Edit Profile',)
+                    )
+                );
+              },
+
+
+            )
+
 
 
           ],
