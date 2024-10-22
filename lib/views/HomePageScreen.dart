@@ -42,48 +42,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
 
 
 
-            Text(
-              "name:", style: TextStyle(fontSize: 20),
-            ),
 
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'enter your name'
-              ),
-            ),
-
-
-
-            Text(
-              "last name:", style: TextStyle(fontSize: 20),
-            ),
-
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'enter your last name'
-              ),
-            ),
-
-            Text(
-              "password:", style: TextStyle(fontSize: 20),
-            ),
-
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'enter a password'
-              ),
-            ),
-
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () { },
-              child: Text('register'),
-            ),
 
 
 
