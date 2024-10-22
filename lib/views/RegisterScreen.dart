@@ -14,9 +14,9 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class RegisterScreenPageState extends State<RegisterScreen> {
-  final _txtFirstName =  TextEditingController();
-  final _txtLastName =  TextEditingController();
-  final _txtPassword =  TextEditingController();
+  final _txtFirstName =  new TextEditingController();
+  final _txtLastName =  new TextEditingController();
+  final _txtPassword = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +42,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
             ),
 
             TextField(
+              controller: _txtFirstName,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'enter your name'
@@ -55,6 +56,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
             ),
 
             TextField(
+              controller: _txtLastName,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'enter your last name'
@@ -66,6 +68,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
             ),
 
             TextField(
+              controller: _txtPassword,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'enter a password'
