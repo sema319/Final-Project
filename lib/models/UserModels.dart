@@ -1,15 +1,16 @@
 class User{
 
   User({
-    this.id;
-    this.name;
-    this.pone;
-    this.note;
+    this.id = "",
+    this.name = "",
+    this.phone = "",
+    this.note = "",
   });
   String id;
   String name;
   String phone;
   String note;
+
   factory User.fromJson(Map<String, dynamic> json) => User(
     id: json["id"],
     name: json["name"],
