@@ -1,3 +1,4 @@
+import 'package:finalproject/Utils/Utils.dart';
 import 'package:flutter/material.dart';
 
 
@@ -49,9 +50,6 @@ class RegisterScreenPageState extends State<RegisterScreen> {
               ),
             ),
 
-
-
-
             Text(
               "last name:", style: TextStyle(fontSize: 20),
             ),
@@ -73,16 +71,23 @@ class RegisterScreenPageState extends State<RegisterScreen> {
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'enter a password'
+
               ),
+
             ),
 
             TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
-              onPressed: () { },
+              onPressed: () {
+                var uti = new Utils();
+                uti.showMyDialog(context,_txtFirstName.text,_txtLastName.text);
+
+              },
               child: Text('register'),
             ),
+
 
 
 
@@ -92,5 +97,8 @@ class RegisterScreenPageState extends State<RegisterScreen> {
       ),
 
     );
+
+
+
   }
 }
