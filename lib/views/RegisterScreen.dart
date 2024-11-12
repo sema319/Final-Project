@@ -1,4 +1,5 @@
 import 'package:finalproject/Utils/Utils.dart';
+import 'package:finalproject/Utils/db.dart';
 import 'package:flutter/material.dart';
 
 
@@ -84,6 +85,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
                 var uti = new Utils();
                 uti.showMyDialog(context,_txtFirstName.text,_txtLastName.text);
 
+                insertUser("Sema", "Ftemi", "123");
               },
               child: Text('register'),
             ),
