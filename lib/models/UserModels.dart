@@ -1,36 +1,40 @@
 class User{
 
   User({
-    this.id = "",
-    this.name = "",
-    this.phone = "",
-    this.note = "",
-    this.address = "",
+    this.firstName = "",
+    this.lastName = "",
+    this.phoneNumber = "",
+    this.password = "",
 
   });
-  String id;
-  String name;
-  String phone;
-  String note;
-  String address;
+  String firstName;
+  String lastName;
+  String phoneNumber;
+  String password;
 
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-    id: json["id"],
-    name: json["name"],
-    phone: json["phone"],
-    note: json["note"],
-    address: json["address"],
+    firstName: json["firstName"],
+    lastName: json["lastName"],
+    phoneNumber: json["phoneNumber"],
+    password: json["password"],
 
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "phone": phone,
-    "note": note,
-    "address": address,
-
-
+    "firstName": firstName,
+    "lastName": lastName,
+    "phoneNumber": phoneNumber,
+    "password": password,
   };
+
+  void addValue(String newfirstName, String newlastName, String newpassword, String newphoneNumber)
+  {
+    firstName = newfirstName;
+    lastName = newlastName;
+    password = newpassword;
+    phoneNumber = newphoneNumber;
+
+  }
+
 }

@@ -73,6 +73,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
                   border: OutlineInputBorder(),
                   hintText: 'enter a password'
 
+
               ),
 
             ),
@@ -85,7 +86,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
                 var uti = new Utils();
                 uti.showMyDialog(context,_txtFirstName.text,_txtLastName.text);
 
-                insertUser("Sema", "Ftemi", "123");
+                insertUser(_txtFirstName.text, _txtLastName.text, _txtPassword.text);
               },
               child: Text('register'),
             ),

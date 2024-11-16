@@ -11,7 +11,7 @@ var _conn;
 
 Future<void> showUsers() async {
   var settings = new ConnectionSettings(
-      host: 'localhost',
+      host: '10.0.2.2',
       port: 3306,
       user: 'root',
       db: 'sema12'
@@ -29,18 +29,18 @@ Future<void> showUsers() async {
 
 
 
-Future<void> insertUser(firstName , lastName , password) async {
+Future<void> insertUser(addValue) async {
   var settings = new ConnectionSettings(
-      host: 'localhost',
+      host: '10.0.2.2',
       port: 3306,
       user: 'root',
-      db: 'anas12'
+      db: 'sema12'
   );
   var conn = await MySqlConnection.connect(settings);
 
   var result = await conn.query(
-      'insert into users (firstName, password, lastName) values (?, ?, ?)',
-      ['Bob', '123', 'momo']);
+      'insert into users (firstName, lastName, password) values (?, ?, ?)',
+      [addValue]);
   print('Inserted row id=${result.insertId}');
 
 
