@@ -19,6 +19,7 @@ class PaymentsType{
     "sweetShop": sweetShop,
     "phoneNumber": phoneNumber,
   };
+  .
 
 
 }
