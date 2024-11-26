@@ -40,13 +40,6 @@ class HomepagescreenPageState extends State<Homepagescreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
 
-
-
-
-
-
-
-
           ],
         ),
       ),

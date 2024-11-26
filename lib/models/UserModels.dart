@@ -28,13 +28,5 @@ class User{
     "password": password,
   };
 
-  void insertUser(String newfirstName, String newlastName, String newpassword, String newphoneNumber)
-  {
-    firstName = newfirstName;
-    lastName = newlastName;
-    password = newpassword;
-    phoneNumber = newphoneNumber;
-
-  }
 
 }
