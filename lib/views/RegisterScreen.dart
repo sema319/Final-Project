@@ -2,7 +2,7 @@ import 'package:finalproject/Utils/Utils.dart';
 import 'package:finalproject/Utils/db.dart';
 import 'package:flutter/material.dart';
 
-import '../models/UserModels.dart';
+import '../models/userModel.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key, required this.title});
@@ -16,15 +16,17 @@ class RegisterScreen extends StatefulWidget {
 class RegisterScreenPageState extends State<RegisterScreen> {
   final _txtFirstName = new TextEditingController();
   final _txtLastName = new TextEditingController();
+  final _txtEmail = new TextEditingController();
   final _txtPassword = new TextEditingController();
   final _txtPhoneNumber = new TextEditingController();
 
   void insertUserFunc() {
-    if(_txtFirstName.text != "" && _txtPassword.text != "" && _txtLastName.text != "" && _txtPhoneNumber.text != "")
+    if(_txtFirstName.text != "" && _txtPassword.text != "" && _txtLastName.text != "" && _txtPhoneNumber.text != "" && _txtEmail.text !="")
       {
         var user = new User();
         user.firstName = _txtFirstName.text;
         user.lastName = _txtLastName.text;
+        user.email = _txtEmail.text;
         user.password = _txtPassword.text;
         user.phoneNumber = _txtPhoneNumber.text;
 
@@ -68,11 +70,20 @@ class RegisterScreenPageState extends State<RegisterScreen> {
                   hintText: 'enter your last name'),
             ),
             Text(
-              "Password*:",
+              "email*:",
               style: TextStyle(fontSize: 20),
             ),
             TextField(
               controller: _txtPassword,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), hintText: 'enter your email'),
+            ),
+            Text(
+              "Password*:",
+              style: TextStyle(fontSize: 20),
+            ),
+            TextField(
+              controller: _txtEmail,
               decoration: InputDecoration(
                   border: OutlineInputBorder(), hintText: 'enter a password'),
             ),
@@ -83,7 +94,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
             TextField(
               controller: _txtPhoneNumber,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'enter a password'),
+                  border: OutlineInputBorder(), hintText: 'enter your phone number'),
             ),
 
             TextButton(
