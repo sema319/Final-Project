@@ -14,14 +14,7 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class EditProfileScreenPageState extends State<EditProfileScreen> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +32,6 @@ class EditProfileScreenPageState extends State<EditProfileScreen> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
-
-
-
-
-
-
 
           ],
         ),
