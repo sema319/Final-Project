@@ -5,13 +5,10 @@ import 'package:flutter/material.dart';
 class businessDetailScreen extends StatefulWidget {
   const businessDetailScreen({super.key, required this.title});
 
-
-
   final String title;
 
   @override
   State<businessDetailScreen> createState() => businessDetailScreenPageState();
-  // State<Homepagescreen> createState() => HomepagescreenPageState();
 
 }
 

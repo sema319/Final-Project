@@ -1,5 +1,5 @@
 import 'package:finalproject/views/EditProfileScreen.dart';
-import 'package:finalproject/views/businessDetailScreen.dart';
+import 'package:finalproject/views/BusinessDetailScreen.dart';
 import 'package:flutter/material.dart';
 
 
