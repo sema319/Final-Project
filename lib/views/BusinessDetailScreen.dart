@@ -34,6 +34,7 @@ class businessDetailScreenPageState extends State<businessDetailScreen> {
             const Image(
               image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
             ),
+            
             Text("sema")
           ],
         ),

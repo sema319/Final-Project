@@ -19,11 +19,13 @@ class PaymentScreenPageState extends State<PaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
 
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .inversePrimary,
 
         title: Text(widget.title),
       ),
@@ -40,7 +42,9 @@ class PaymentScreenPageState extends State<PaymentScreen> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const businessDetailScreen(title: 'Business Page',)));
+                    MaterialPageRoute(
+                        builder: (context) => const businessDetailScreen(
+                          title: 'Business Page',)));
               },
               child: Text('ApplePay'),
             ),
@@ -52,7 +56,9 @@ class PaymentScreenPageState extends State<PaymentScreen> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const businessDetailScreen(title: 'Business Page',)));
+                    MaterialPageRoute(
+                        builder: (context) => const businessDetailScreen(
+                          title: 'Business Page',)));
               },
               child: Text('Visa'),
             ),
@@ -62,5 +68,5 @@ class PaymentScreenPageState extends State<PaymentScreen> {
       ),
 
     );
-    
+  }
 }
