@@ -88,6 +88,11 @@ class HomepagescreenPageState extends State<Homepagescreen> {
               ),
             ),
 
+            Text(
+              "אירוח",
+              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic),
+
+            ),
 
             Container(
               margin: const EdgeInsets.symmetric(vertical: 20),

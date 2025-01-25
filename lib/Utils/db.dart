@@ -1,6 +1,6 @@
 import 'package:mysql1/mysql1.dart';
 
-import '../models/userModel.dart';
+import '../models/UserModel.dart';
 
 var _conn;
 

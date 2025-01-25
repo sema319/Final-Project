@@ -1,7 +1,9 @@
+import 'package:finalproject/views/BusinessMangerScreen.dart';
 import 'package:finalproject/views/EditProfileScreen.dart';
 import 'package:finalproject/views/HomePageScreen.dart';
 import 'package:finalproject/views/PaymentScreen.dart';
 import 'package:finalproject/views/RegisterScreen.dart';
+import 'package:finalproject/views/RegisterationDetailScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -150,6 +152,18 @@ class _MyHomePageState extends State<MyHomePage> {
                     MaterialPageRoute(builder: (context) => const PaymentScreen(title: 'Home Page',)));
               },
               child: Text('payment'),
+            ),
+
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const RegisterationDetailScreen(title: 'Home Page',)));
+              },
+              child: Text('Manager'),
             ),
 
 

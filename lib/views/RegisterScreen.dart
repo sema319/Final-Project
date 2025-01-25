@@ -2,7 +2,7 @@ import 'package:finalproject/Utils/Utils.dart';
 import 'package:finalproject/Utils/db.dart';
 import 'package:flutter/material.dart';
 
-import '../models/userModel.dart';
+import '../models/UserModel.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key, required this.title});
