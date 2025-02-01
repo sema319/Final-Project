@@ -42,49 +42,17 @@ class HomepagescreenPageState extends State<Homepagescreen> {
               style: TextStyle(fontSize: 30),
             ),
 
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const businessDetailScreen(title: 'business Detail',)));
-              },
-              child: Text(
-                  "אולם אלנור",
-                  style: TextStyle(fontSize: 30)
-            ),
-            ),
-            
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 20),
-              height: 200,
-              child: ListView(
-                // This next line does the trick.
+
+            SizedBox(
+              height: 200.0,
+              child: ListView.builder(
+                physics: ClampingScrollPhysics(),
+                shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Container(
-                    width: 160,
-                    color: Colors.red,
-                  ),
-                  Container(
-                    width: 160,
-                    color: Colors.blue,
-                  ),
-                  Container(
-                    width: 160,
-                    color: Colors.green,
-                  ),
-                  Container(
-                    width: 160,
-                    color: Colors.yellow,
-                  ),
-                  Container(
-                    width: 160,
-                    color: Colors.orange,
-                  ),
-                ],
+                itemCount: 15,
+                itemBuilder: (BuildContext context, int index) => Card(
+                  child: Center(child: Text('Dummy Card Text')),
+                ),
               ),
             ),
 
@@ -94,36 +62,6 @@ class HomepagescreenPageState extends State<Homepagescreen> {
 
             ),
 
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 20),
-              height: 200,
-              child: ListView(
-                // This next line does the trick.
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Container(
-                    width: 160,
-                    color: Colors.red,
-                  ),
-                  Container(
-                    width: 160,
-                    color: Colors.blue,
-                  ),
-                  Container(
-                    width: 160,
-                    color: Colors.green,
-                  ),
-                  Container(
-                    width: 160,
-                    color: Colors.yellow,
-                  ),
-                  Container(
-                    width: 160,
-                    color: Colors.orange,
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),

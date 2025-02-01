@@ -163,7 +163,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     context,
                     MaterialPageRoute(builder: (context) => const RegisterationDetailScreen(title: 'Home Page',)));
               },
-              child: Text('Manager'),
+              child: Text('registeration'),
+            ),
+
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const BusinessMangerScreen(title: 'Home Page',)));
+              },
+              child: Text('manager'),
             ),
 
 
