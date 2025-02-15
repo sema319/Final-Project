@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
+
     return Scaffold(
     appBar: AppBar(
 
@@ -115,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   context,
                   MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',)));
                 },
-              child: Text('log in'),
+              child: Text('Next'),
             ),
 
             TextButton(
@@ -177,6 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('manager'),
             ),
+
 
 
           ],

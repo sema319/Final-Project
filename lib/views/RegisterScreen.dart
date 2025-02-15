@@ -1,5 +1,6 @@
 import 'package:finalproject/Utils/Utils.dart';
 import 'package:finalproject/Utils/db.dart';
+import 'package:finalproject/views/HomePageScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../models/UserModel.dart';
@@ -102,13 +103,20 @@ class RegisterScreenPageState extends State<RegisterScreen> {
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
               onPressed: () {
-                insertUserFunc();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',)));
               },
               child: Text('register'),
             ),
+
+
           ],
         ),
+        
       ),
+
     );
+
   }
 }
