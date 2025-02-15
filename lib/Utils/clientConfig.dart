@@ -1,1 +1,2 @@
-const sitePath = "https://darkgray-hummingbird-925566.hostingersite.com/sema/";
+const serverPath = "https://darkgray-hummingbird-925566.hostingersite.com/sema/";
+

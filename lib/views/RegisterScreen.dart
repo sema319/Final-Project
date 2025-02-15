@@ -1,9 +1,11 @@
 import 'package:finalproject/Utils/Utils.dart';
+import 'package:finalproject/Utils/clientConfig.dart';
 import 'package:finalproject/Utils/db.dart';
 import 'package:finalproject/views/HomePageScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../models/UserModel.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key, required this.title});
@@ -42,6 +44,17 @@ class RegisterScreenPageState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Future insertUser(BuildContext context, String firstName, String lastName) async {
+
+      //   SharedPreferences prefs = await SharedPreferences.getInstance();
+      //  String? getInfoDeviceSTR = prefs.getString("getInfoDeviceSTR");
+      var url = "users/insertUser.php?firstName=" + firstName + "&lastName=" + lastName;
+      final response = await http.get(Uri.parse(serverPath + url));
+      // print(serverPath + url);
+      setState(() { });
+      Navigator.pop(context);
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -105,7 +118,9 @@ class RegisterScreenPageState extends State<RegisterScreen> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',)));
+                    MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',))
+                );
+                insertUser(context,  _txtFirstName.text, _txtLastName.text);
               },
               child: Text('register'),
             ),
@@ -113,7 +128,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
 
           ],
         ),
-        
+
       ),
 
     );
