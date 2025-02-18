@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:finalproject/views/BusinessMangerScreen.dart';
 import 'package:finalproject/views/EditProfileScreen.dart';
 import 'package:finalproject/views/HomePageScreen.dart';
@@ -5,6 +7,8 @@ import 'package:finalproject/views/PaymentScreen.dart';
 import 'package:finalproject/views/RegisterScreen.dart';
 import 'package:finalproject/views/RegisterationDetailScreen.dart';
 import 'package:flutter/material.dart';
+
+import 'Utils/Utils.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,17 +43,31 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+
+  checkConction() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        // print('connected to internet');// print(result);// return 1;
+      }
+    } on SocketException catch (_) {
+      // print('not connected to internet');// print(result);
+      var uti = new Utils();
+      uti.showMyDialog(context, "אין אינטרנט", "האפליקציה דורשת חיבור לאינטרנט, נא להתחבר בבקשה");
+      return;
+    }
+  }
+
+
 
   void _incrementCounter() {
     setState(() {
-
-      _counter++;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    checkConction();
 
 
     return Scaffold(
@@ -75,6 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
 
       ),
+
+
       body: Center(
 
         child: Column(

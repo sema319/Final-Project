@@ -19,17 +19,15 @@ class RegisterScreen extends StatefulWidget {
 class RegisterScreenPageState extends State<RegisterScreen> {
   final _txtFirstName = new TextEditingController();
   final _txtLastName = new TextEditingController();
-  final _txtEmail = new TextEditingController();
   final _txtPassword = new TextEditingController();
   final _txtPhoneNumber = new TextEditingController();
 
   void insertUserFunc() {
-    if(_txtFirstName.text != "" && _txtPassword.text != "" && _txtLastName.text != "" && _txtPhoneNumber.text != "" && _txtEmail.text !="")
+    if(_txtFirstName.text != "" && _txtPassword.text != "" && _txtLastName.text != "" && _txtPhoneNumber.text != "" )
       {
         var user = new User();
         user.firstName = _txtFirstName.text;
         user.lastName = _txtLastName.text;
-        user.email = _txtEmail.text;
         user.password = _txtPassword.text;
         user.phoneNumber = _txtPhoneNumber.text;
 
@@ -50,9 +48,14 @@ class RegisterScreenPageState extends State<RegisterScreen> {
       //  String? getInfoDeviceSTR = prefs.getString("getInfoDeviceSTR");
       var url = "users/insertUser.php?firstName=" + firstName + "&lastName=" + lastName;
       final response = await http.get(Uri.parse(serverPath + url));
-      // print(serverPath + url);
-      setState(() { });
-      Navigator.pop(context);
+      print(serverPath + url);
+      // setState(() { });
+      // Navigator.pop(context);
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',))
+      );
     }
 
     return Scaffold(
@@ -84,20 +87,11 @@ class RegisterScreenPageState extends State<RegisterScreen> {
                   hintText: 'enter your last name'),
             ),
             Text(
-              "email*:",
-              style: TextStyle(fontSize: 20),
-            ),
-            TextField(
-              controller: _txtPassword,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'enter your email'),
-            ),
-            Text(
               "Password*:",
               style: TextStyle(fontSize: 20),
             ),
             TextField(
-              controller: _txtEmail,
+              controller: _txtPassword,
               decoration: InputDecoration(
                   border: OutlineInputBorder(), hintText: 'enter a password'),
             ),
@@ -116,11 +110,8 @@ class RegisterScreenPageState extends State<RegisterScreen> {
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',))
-                );
-                insertUser(context,  _txtFirstName.text, _txtLastName.text);
+
+                insertUser(context,  _txtFirstName.text, _txtLastName.text,);
               },
               child: Text('register'),
             ),
