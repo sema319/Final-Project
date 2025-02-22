@@ -1,38 +1,38 @@
-class User{
+class Clients{
 
-  User({
-    this.firstName = "",
-    this.lastName = "",
+  Clients({
+    this.clientID = "",
+    this.clientName = "",
     this.phoneNumber = "",
-    this.password = "",
+    this.email = "",
 
   });
-  String firstName;
-  String lastName;
+  String clientID;
+  String clientName;
   String phoneNumber;
-  String password;
+  String email;
 
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
-    firstName: json["firstName"],
-    lastName: json["lastName"],
+  factory Clients.fromJson(Map<String, dynamic> json) => Clients(
+    clientID: json["clientID"],
+    clientName: json["clientName"],
     phoneNumber: json["phoneNumber"],
-    password: json["password"],
+    email: json["email"],
 
   );
 
   Map<String, dynamic> toJson() => {
-    "firstName": firstName,
-    "lastName": lastName,
+    "clientID": clientID,
+    "clientName": clientName,
     "phoneNumber": phoneNumber,
-    "password": password,
+    "email": email,
   };
 
-  void addValue(String newfirstName, String newlastName, String newpassword, String newphoneNumber)
+  void addValue(String newclientID, String newclientName, String newemail, String newphoneNumber)
   {
-    firstName = newfirstName;
-    lastName = newlastName;
-    password = newpassword;
+    clientID = newclientID;
+    clientName = newclientName;
+    email = newemail;
     phoneNumber = newphoneNumber;
 
   }

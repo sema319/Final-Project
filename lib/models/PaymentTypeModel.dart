@@ -1,23 +1,27 @@
 class PaymentsType{
 
   PaymentsType({
-    this.sweetShop = "",
-    this.phoneNumber = "",
+    this.visa = "",
+    this.ApplePay = "",
+    this.Bit = "",
 
   });
-  String sweetShop;
-  String phoneNumber;
+  String visa;
+  String ApplePay;
+  String Bit;
 
 
   factory PaymentsType.fromJson(Map<String, dynamic> json) => PaymentsType(
-    sweetShop: json["sweetShop"],
-    phoneNumber: json["phoneNumber"],
+    visa: json["visa"],
+    ApplePay: json["ApplePay"],
+    Bit: json["Bit"],
 
   );
 
   Map<String, dynamic> toJson() => {
-    "sweetShop": sweetShop,
-    "phoneNumber": phoneNumber,
+    "visa": visa,
+    "ApplePay": ApplePay,
+    "Bit": Bit,
   };
 
 

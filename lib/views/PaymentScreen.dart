@@ -15,8 +15,6 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class PaymentScreenPageState extends State<PaymentScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +59,19 @@ class PaymentScreenPageState extends State<PaymentScreen> {
                           title: 'Business Page',)));
               },
               child: Text('Visa'),
+            ),
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const businessDetailScreen(
+                          title: 'Business Page',)));
+              },
+              child: Text('Bit'),
             ),
 
           ],
