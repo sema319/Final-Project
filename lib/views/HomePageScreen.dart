@@ -1,13 +1,14 @@
 import 'package:finalproject/views/EditProfileScreen.dart';
 import 'package:finalproject/views/BusinessDetailScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert'; // Import for JSON decoding
+import 'package:finalproject/models/BusinessModel.dart';
 
-
+import '../Utils/clientConfig.dart'; // Ensure this import is correct for your BusinessModel class
 
 class Homepagescreen extends StatefulWidget {
   const Homepagescreen({super.key, required this.title});
-
-
 
   final String title;
 
@@ -17,55 +18,118 @@ class Homepagescreen extends StatefulWidget {
 
 class HomepagescreenPageState extends State<Homepagescreen> {
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
+      body: FutureBuilder<List<BusinessModel>>(
 
-        child: Column(
+        future: getBusiness(),
+        builder: (context, projectSnap) {
+          if (projectSnap.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator(color: Colors.red));
+          }
 
-          mainAxisAlignment: MainAxisAlignment.center,
-          
-          children: <Widget>[
-            
-            Text(
-              "אולם",
-              style: TextStyle(fontSize: 30),
-            ),
-
-
-            SizedBox(
-              height: 200.0,
-              child: ListView.builder(
-                physics: ClampingScrollPhysics(),
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: 15,
-                itemBuilder: (BuildContext context, int index) => Card(
-                  child: Center(child: Text('Dummy Card Text')),
-                ),
+          if (projectSnap.hasError) {
+            print(projectSnap.error);
+            return Center(
+              child: Text(
+                'שגיאה, נסה שוב',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
-            ),
+            );
+          }
 
-            Text(
-              "אירוח",
-              style: TextStyle(fontSize: 30, fontStyle: FontStyle.italic),
+          if (projectSnap.hasData) {
+            if (projectSnap.data!.isEmpty) {
+              return SizedBox(
+                height: MediaQuery.of(context).size.height * 2,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'אין תוצאות',
+                    style: TextStyle(fontSize: 23, color: Colors.black),
+                  ),
+                ),
+              );
+            } else {
+              return
+                Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    child:
+                    ListView.builder(
 
-            ),
+                scrollDirection: Axis.horizontal, // Set this to make it horizontal
+                itemCount: projectSnap.data!.length,
+                itemBuilder: (context, index) {
+                  BusinessModel project = projectSnap.data![index];
 
-          ],
-        ),
+                  return Card(
+
+                    child: Container(
+                      height: 200,
+                      // width: 100,
+                      width: MediaQuery.of(context).size.width * 0.3,  // Adjust width for each item
+                      margin: EdgeInsets.all(8.0), // Space between items
+                      child: ListTile(
+
+                        enabled: true,
+                        onTap: () {
+                          // Handle onTap event here
+                        },
+                        title: Text(
+                          project.businessName!,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        subtitle: Text(
+                          project.capacity.toString(),
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        isThreeLine: false,
+                      ),
+                    ),
+                  );
+                },
+              )
+                );
+            }
+          }
+
+          return Center(
+            child: CircularProgressIndicator(color: Colors.red),
+          );
+        },
       ),
-
     );
   }
+
+  Future<List<BusinessModel>> getBusiness() async {
+    var url = "businesses/getBusiness.php";
+    final response = await http.get(Uri.parse(serverPath + url));
+    print(serverPath + url);
+
+    if (response.statusCode == 200) {
+      List<BusinessModel> arr = [];
+      for (Map<String, dynamic> i in json.decode(response.body)) {
+        arr.add(BusinessModel.fromJson(i)); // Assuming BusinessModel has fromJson constructor
+      }
+      return arr;
+    }
+    else {
+      throw Exception('Failed to load data');
+    }
+  }
+
 }

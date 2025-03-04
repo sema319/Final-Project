@@ -7,8 +7,6 @@ import '../Utils/clientConfig.dart';
 import '../models/BusinessModel.dart';
 import 'package:http/http.dart' as http;
 
-
-
 class BusinessMangerScreen extends StatefulWidget {
   const BusinessMangerScreen({super.key, required this.title});
 
@@ -23,46 +21,52 @@ class BusinessMangerScreenPageState extends State<BusinessMangerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text(widget.title),
+        ),
         body: FutureBuilder(
           future: getBusiness(),
           builder: (context, projectSnap) {
             if (projectSnap.hasData) {
-              if (projectSnap.data.length == 0)
-              {
+              if (projectSnap.data.length == 0) {
                 return SizedBox(
                   height: MediaQuery.of(context).size.height * 2,
                   child: Align(
                       alignment: Alignment.center,
-                      child: Text('אין תוצאות', style: TextStyle(fontSize: 23, color: Colors.black))
-                  ),
+                      child: Text('אין תוצאות',
+                          style: TextStyle(fontSize: 23, color: Colors.black))),
                 );
-              }
-              else {
+              } else {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-
                     Expanded(
-                        child:ListView.builder(
-                          itemCount: projectSnap.data.length,
-                          itemBuilder: (context, index) {
-                            BusinessModel project = projectSnap.data[index];
+                        child: ListView.builder(
+                      itemCount: projectSnap.data.length,
+                      itemBuilder: (context, index) {
+                        BusinessModel project = projectSnap.data[index];
 
-                            return Card(
-                                child: ListTile(
-                                  enabled: false,
-                                  onTap: () {
-
-
-                                  },
-                                  title: Text(project.businessName!, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),), // Icon(Icons.timer),
-                                  // subtitle: Text("[" + project.ariveHour! + "-" + project.exitHour! + "]" + "\n" + project.comments!, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),),
-                                  /*
+                        return Card(
+                            child: ListTile(
+                          enabled: false,
+                          onTap: () {},
+                          title: Text(
+                            project.businessName!,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ), // Icon(Icons.timer),
+                          subtitle: Text(
+                            project.capacity.toString(),
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
+                          /*
                                   trailing: Container(
                                     decoration: const BoxDecoration(
                                       color: Colors.blue,
@@ -80,36 +84,36 @@ class BusinessMangerScreenPageState extends State<BusinessMangerScreen> {
                                   ),
 */
 
-                                  isThreeLine: false,
-                                ));
-                          },
-                        )),
+                          isThreeLine: false,
+                        ));
+                      },
+                    )),
                   ],
                 );
               }
+            } else if (projectSnap.hasError) {
+              print(projectSnap.error);
+              return Center(
+                  child: Text('שגיאה, נסה שוב',
+                      style: TextStyle(
+                          fontSize: 22, fontWeight: FontWeight.bold)));
             }
-            else if (projectSnap.hasError)
-            {
-              return  Center(child: Text('שגיאה, נסה שוב', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)));
-            }
-            return Center(child: new CircularProgressIndicator(color: Colors.red,));
+            return Center(
+                child: new CircularProgressIndicator(
+              color: Colors.red,
+            ));
           },
-        )
-
-
-    );
+        ));
   }
 
-
   Future getBusiness() async {
-
     var url = "businesses/getBusiness.php";
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath + url);
     List<BusinessModel> arr = [];
     print("length:" + arr.length.toString());
 
-    for(Map<String, dynamic> i in json.decode(response.body)){
+    for (Map<String, dynamic> i in json.decode(response.body)) {
       print("i:" + i.toString());
       arr.add(BusinessModel.fromJson(i));
     }
@@ -117,6 +121,4 @@ class BusinessMangerScreenPageState extends State<BusinessMangerScreen> {
 
     return arr;
   }
-
-
 }
