@@ -25,7 +25,23 @@ class HomepagescreenPageState extends State<Homepagescreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: FutureBuilder<List<BusinessModel>>(
+      body:Row(
+        children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            'Your Main Title Here', // Text that will appear at the top
+            style: TextStyle(
+              fontSize: 24,  // Adjust font size
+              fontWeight: FontWeight.bold,  // Make the text bold
+              color: Colors.black,  // Change color if needed
+            ),
+          ),
+        ),
+
+
+      Expanded(
+        child: FutureBuilder<List<BusinessModel>>(
 
         future: getBusiness(),
         builder: (context, projectSnap) {
@@ -57,6 +73,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
               );
             } else {
               return
+
                 Container(
                     height: 200,
                     width: MediaQuery.of(context).size.width,
@@ -111,6 +128,9 @@ class HomepagescreenPageState extends State<Homepagescreen> {
             child: CircularProgressIndicator(color: Colors.red),
           );
         },
+      ),
+      ),
+    ],
       ),
     );
   }
