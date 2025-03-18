@@ -17,7 +17,6 @@ class Homepagescreen extends StatefulWidget {
 }
 
 class HomepagescreenPageState extends State<Homepagescreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,118 +24,764 @@ class HomepagescreenPageState extends State<Homepagescreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body:Row(
+      body: SingleChildScrollView(
+        child: Column(
+
         children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            'Your Main Title Here', // Text that will appear at the top
-            style: TextStyle(
-              fontSize: 24,  // Adjust font size
-              fontWeight: FontWeight.bold,  // Make the text bold
-              color: Colors.black,  // Change color if needed
+          // Text "Halls" aligned to the left
+          Align(
+            alignment: Alignment.centerLeft, // Align text to the left
+            child: Padding(
+              padding: const EdgeInsets.all(8.0), // Optional padding for better spacing
+              child: Text(
+                "Halls",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Georgia'),
+              ),
             ),
           ),
-        ),
 
+          // First FutureBuilder
+          FutureBuilder<List<BusinessModel>>(
+            future: getBusiness(6),
+            builder: (context, projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator(color: Colors.red));
+              }
 
-      Expanded(
-        child: FutureBuilder<List<BusinessModel>>(
-
-        future: getBusiness(),
-        builder: (context, projectSnap) {
-          if (projectSnap.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator(color: Colors.red));
-          }
-
-          if (projectSnap.hasError) {
-            print(projectSnap.error);
-            return Center(
-              child: Text(
-                'שגיאה, נסה שוב',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-            );
-          }
-
-          if (projectSnap.hasData) {
-            if (projectSnap.data!.isEmpty) {
-              return SizedBox(
-                height: MediaQuery.of(context).size.height * 2,
-                child: Align(
-                  alignment: Alignment.center,
+              if (projectSnap.hasError) {
+                print(projectSnap.error);
+                return Center(
                   child: Text(
-                    'אין תוצאות',
-                    style: TextStyle(fontSize: 23, color: Colors.black),
+                    'שגיאה, נסה שוב',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                ),
-              );
-            } else {
-              return
+                );
+              }
 
-                Container(
-                    height: 200,
-                    width: MediaQuery.of(context).size.width,
-                    child:
-                    ListView.builder(
-
-                scrollDirection: Axis.horizontal, // Set this to make it horizontal
-                itemCount: projectSnap.data!.length,
-                itemBuilder: (context, index) {
-                  BusinessModel project = projectSnap.data![index];
-
-                  return Card(
-
-                    child: Container(
-                      height: 200,
-                      // width: 100,
-                      width: MediaQuery.of(context).size.width * 0.3,  // Adjust width for each item
-                      margin: EdgeInsets.all(8.0), // Space between items
-                      child: ListTile(
-
-                        enabled: true,
-                        onTap: () {
-                          // Handle onTap event here
-                        },
-                        title: Text(
-                          project.businessName!,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        subtitle: Text(
-                          project.capacity.toString(),
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        isThreeLine: false,
+              if (projectSnap.hasData) {
+                if (projectSnap.data!.isEmpty) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 2,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'אין תוצאות',
+                        style: TextStyle(fontSize: 23, color: Colors.black),
                       ),
                     ),
                   );
-                },
-              )
-                );
-            }
-          }
+                } else {
+                  return Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: projectSnap.data!.length,
+                      itemBuilder: (context, index) {
+                        BusinessModel project = projectSnap.data![index];
 
-          return Center(
-            child: CircularProgressIndicator(color: Colors.red),
-          );
-        },
+                        return Card(
+                          child: Container(
+                            height: 200,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            margin: EdgeInsets.all(8.0),
+                            child: ListTile(
+                              enabled: true,
+                              onTap: () {
+                                // Handle onTap event here
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) =>  BusinessDetailScreen(title: project.businessName!,  bussID:project.businessID ,)));
+
+                              },
+                              title: Text(
+                                project.businessName!,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              subtitle: Text(
+                                project.capacity.toString(),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              isThreeLine: false,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              }
+
+              return Center(
+                child: CircularProgressIndicator(color: Colors.red),
+              );
+            },
+          ),
+
+          Align(
+            alignment: Alignment.centerLeft, // Align text to the left
+            child: Padding(
+              padding: const EdgeInsets.all(8.0), // Optional padding for better spacing
+              child: Text(
+                "DJ",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily:'Georgia'),
+              ),
+            ),
+          ),
+          FutureBuilder<List<BusinessModel>>(
+            future: getBusiness(2),
+            builder: (context, projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator(color: Colors.red));
+              }
+
+              if (projectSnap.hasError) {
+                print(projectSnap.error);
+                return Center(
+                  child: Text(
+                    'שגיאה, נסה שוב',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                );
+              }
+
+              if (projectSnap.hasData) {
+                if (projectSnap.data!.isEmpty) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 2,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'אין תוצאות',
+                        style: TextStyle(fontSize: 23, color: Colors.black),
+                      ),
+                    ),
+                  );
+                } else {
+                  return Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: projectSnap.data!.length,
+                      itemBuilder: (context, index) {
+                        BusinessModel project = projectSnap.data![index];
+
+                        return Card(
+                          child: Container(
+                            height: 200,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            margin: EdgeInsets.all(8.0),
+                            child: ListTile(
+                              enabled: true,
+                              onTap: () {
+                                // Handle onTap event here
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) =>  BusinessDetailScreen(title: project.businessName!,  bussID:project.businessID ,)));
+                              },
+                              title: Text(
+                                project.businessName!,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              subtitle: Text(
+                                project.capacity.toString(),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              isThreeLine: false,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              }
+
+              return Center(
+                child: CircularProgressIndicator(color: Colors.red),
+              );
+            },
+          ),
+
+
+          Align(
+            alignment: Alignment.centerLeft, // Align text to the left
+            child: Padding(
+              padding: const EdgeInsets.all(8.0), // Optional padding for better spacing
+              child: Text(
+                "Chef",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily:'Georgia'),
+              ),
+            ),
+          ),
+          FutureBuilder<List<BusinessModel>>(
+            future: getBusiness(8),
+            builder: (context, projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator(color: Colors.red));
+              }
+
+              if (projectSnap.hasError) {
+                print(projectSnap.error);
+                return Center(
+                  child: Text(
+                    'שגיאה, נסה שוב',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                );
+              }
+
+              if (projectSnap.hasData) {
+                if (projectSnap.data!.isEmpty) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 2,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'אין תוצאות',
+                        style: TextStyle(fontSize: 23, color: Colors.black),
+                      ),
+                    ),
+                  );
+                } else {
+                  return Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: projectSnap.data!.length,
+                      itemBuilder: (context, index) {
+                        BusinessModel project = projectSnap.data![index];
+
+                        return Card(
+                          child: Container(
+                            height: 200,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            margin: EdgeInsets.all(8.0),
+                            child: ListTile(
+                              enabled: true,
+                              onTap: () {
+                                // Handle onTap event here
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) =>  BusinessDetailScreen(title: project.businessName!,  bussID:project.businessID ,)));
+                              },
+                              title: Text(
+                                project.businessName!,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              subtitle: Text(
+                                project.capacity.toString(),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              isThreeLine: false,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              }
+
+              return Center(
+                child: CircularProgressIndicator(color: Colors.red),
+              );
+            },
+          ),
+
+          Align(
+            alignment: Alignment.centerLeft, // Align text to the left
+            child: Padding(
+              padding: const EdgeInsets.all(8.0), // Optional padding for better spacing
+              child: Text(
+                "Make-Up Artist",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily:'Georgia'),
+              ),
+            ),
+          ),
+          FutureBuilder<List<BusinessModel>>(
+            future: getBusiness(4),
+            builder: (context, projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator(color: Colors.red));
+              }
+
+              if (projectSnap.hasError) {
+                print(projectSnap.error);
+                return Center(
+                  child: Text(
+                    'שגיאה, נסה שוב',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                );
+              }
+
+              if (projectSnap.hasData) {
+                if (projectSnap.data!.isEmpty) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 2,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'אין תוצאות',
+                        style: TextStyle(fontSize: 23, color: Colors.black),
+                      ),
+                    ),
+                  );
+                } else {
+                  return Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: projectSnap.data!.length,
+                      itemBuilder: (context, index) {
+                        BusinessModel project = projectSnap.data![index];
+
+                        return Card(
+                          child: Container(
+                            height: 200,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            margin: EdgeInsets.all(8.0),
+                            child: ListTile(
+                              enabled: true,
+                              onTap: () {
+                                // Handle onTap event here
+                              },
+                              title: Text(
+                                project.businessName!,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              subtitle: Text(
+                                project.capacity.toString(),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              isThreeLine: false,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              }
+
+              return Center(
+                child: CircularProgressIndicator(color: Colors.red),
+              );
+            },
+          ),
+
+
+          Align(
+            alignment: Alignment.centerLeft, // Align text to the left
+            child: Padding(
+              padding: const EdgeInsets.all(8.0), // Optional padding for better spacing
+              child: Text(
+                "Photographer",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily:'Georgia'),
+              ),
+            ),
+          ),
+          FutureBuilder<List<BusinessModel>>(
+            future: getBusiness(7),
+            builder: (context, projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator(color: Colors.red));
+              }
+
+              if (projectSnap.hasError) {
+                print(projectSnap.error);
+                return Center(
+                  child: Text(
+                    'שגיאה, נסה שוב',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                );
+              }
+
+              if (projectSnap.hasData) {
+                if (projectSnap.data!.isEmpty) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 2,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'אין תוצאות',
+                        style: TextStyle(fontSize: 23, color: Colors.black),
+                      ),
+                    ),
+                  );
+                } else {
+                  return Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: projectSnap.data!.length,
+                      itemBuilder: (context, index) {
+                        BusinessModel project = projectSnap.data![index];
+
+                        return Card(
+                          child: Container(
+                            height: 200,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            margin: EdgeInsets.all(8.0),
+                            child: ListTile(
+                              enabled: true,
+                              onTap: () {
+                                // Handle onTap event here
+                              },
+                              title: Text(
+                                project.businessName!,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              subtitle: Text(
+                                project.capacity.toString(),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              isThreeLine: false,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              }
+
+              return Center(
+                child: CircularProgressIndicator(color: Colors.red),
+              );
+            },
+          ),
+
+
+          // Text "Decorations" aligned to the left
+          Align(
+            alignment: Alignment.centerLeft, // Align text to the left
+            child: Padding(
+              padding: const EdgeInsets.all(8.0), // Optional padding for better spacing
+              child: Text(
+                "Decorations",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily:'Georgia'),
+              ),
+            ),
+          ),
+
+          // Second FutureBuilder
+          FutureBuilder<List<BusinessModel>>(
+            future: getBusiness(1),
+            builder: (context, projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator(color: Colors.red));
+              }
+
+              if (projectSnap.hasError) {
+                print(projectSnap.error);
+                return Center(
+                  child: Text(
+                    'שגיאה, נסה שוב',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                );
+              }
+
+              if (projectSnap.hasData) {
+                if (projectSnap.data!.isEmpty) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 2,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'אין תוצאות',
+                        style: TextStyle(fontSize: 23, color: Colors.black),
+                      ),
+                    ),
+                  );
+                } else {
+                  return Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: projectSnap.data!.length,
+                      itemBuilder: (context, index) {
+                        BusinessModel project = projectSnap.data![index];
+
+                        return Card(
+                          child: Container(
+                            height: 200,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            margin: EdgeInsets.all(8.0),
+                            child: ListTile(
+                              enabled: true,
+                              onTap: () {
+                                // Handle onTap event here
+                              },
+                              title: Text(
+                                project.businessName!,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              subtitle: Text(
+                                project.capacity.toString(),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              isThreeLine: false,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              }
+
+              return Center(
+                child: CircularProgressIndicator(color: Colors.red),
+              );
+            },
+          ),
+
+          Align(
+            alignment: Alignment.centerLeft, // Align text to the left
+            child: Padding(
+              padding: const EdgeInsets.all(8.0), // Optional padding for better spacing
+              child: Text(
+                "Fruits",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily:'Georgia'),
+              ),
+            ),
+          ),
+          FutureBuilder<List<BusinessModel>>(
+            future: getBusiness(3),
+            builder: (context, projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator(color: Colors.red));
+              }
+
+              if (projectSnap.hasError) {
+                print(projectSnap.error);
+                return Center(
+                  child: Text(
+                    'שגיאה, נסה שוב',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                );
+              }
+
+              if (projectSnap.hasData) {
+                if (projectSnap.data!.isEmpty) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 2,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'אין תוצאות',
+                        style: TextStyle(fontSize: 23, color: Colors.black),
+                      ),
+                    ),
+                  );
+                } else {
+                  return Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: projectSnap.data!.length,
+                      itemBuilder: (context, index) {
+                        BusinessModel project = projectSnap.data![index];
+
+                        return Card(
+                          child: Container(
+                            height: 200,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            margin: EdgeInsets.all(8.0),
+                            child: ListTile(
+                              enabled: true,
+                              onTap: () {
+                                // Handle onTap event here
+                              },
+                              title: Text(
+                                project.businessName!,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              subtitle: Text(
+                                project.capacity.toString(),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              isThreeLine: false,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              }
+
+              return Center(
+                child: CircularProgressIndicator(color: Colors.red),
+              );
+            },
+          ),
+
+          Align(
+            alignment: Alignment.centerLeft, // Align text to the left
+            child: Padding(
+              padding: const EdgeInsets.all(8.0), // Optional padding for better spacing
+              child: Text(
+                "Sweets",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily:'Georgia'),
+              ),
+            ),
+          ),
+          FutureBuilder<List<BusinessModel>>(
+            future: getBusiness(5),
+            builder: (context, projectSnap) {
+              if (projectSnap.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator(color: Colors.red));
+              }
+
+              if (projectSnap.hasError) {
+                print(projectSnap.error);
+                return Center(
+                  child: Text(
+                    'שגיאה, נסה שוב',
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                );
+              }
+
+              if (projectSnap.hasData) {
+                if (projectSnap.data!.isEmpty) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 2,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'אין תוצאות',
+                        style: TextStyle(fontSize: 23, color: Colors.black),
+                      ),
+                    ),
+                  );
+                } else {
+                  return Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: projectSnap.data!.length,
+                      itemBuilder: (context, index) {
+                        BusinessModel project = projectSnap.data![index];
+
+                        return Card(
+                          child: Container(
+                            height: 200,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            margin: EdgeInsets.all(8.0),
+                            child: ListTile(
+                              enabled: true,
+                              onTap: () {
+                                // Handle onTap event here
+                              },
+                              title: Text(
+                                project.businessName!,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              subtitle: Text(
+                                project.capacity.toString(),
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              isThreeLine: false,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              }
+
+              return Center(
+                child: CircularProgressIndicator(color: Colors.red),
+              );
+            },
+          ),
+        ],
       ),
-      ),
-    ],
       ),
     );
   }
 
-  Future<List<BusinessModel>> getBusiness() async {
-    var url = "businesses/getBusiness.php";
+  Future<List<BusinessModel>> getBusiness(businessTypeID) async {
+    var url = "businesses/getBusiness.php?businessTypeID=" + businessTypeID.toString();
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath + url);
 
@@ -146,10 +791,8 @@ class HomepagescreenPageState extends State<Homepagescreen> {
         arr.add(BusinessModel.fromJson(i)); // Assuming BusinessModel has fromJson constructor
       }
       return arr;
-    }
-    else {
+    } else {
       throw Exception('Failed to load data');
     }
   }
-
 }

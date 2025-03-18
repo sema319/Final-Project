@@ -106,27 +106,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 
+
             Text(
-              "name:", style: TextStyle(fontSize: 20),
+              "PhoneNumber:", style: TextStyle(fontSize: 20),
             ),
 
             TextField(
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'enter your name'
-
-              ),
-            ),
-
-
-            Text(
-              "password:", style: TextStyle(fontSize: 20),
-            ),
-
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'enter a password'
+                  hintText: 'enter your PhoneNumber'
               ),
             ),
 
@@ -148,9 +136,9 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const RegisterScreen(title: 'register',)));
+                    MaterialPageRoute(builder: (context) => const RegisterScreen(title: 'Sign Up',)));
               },
-              child: Text('create new account'),
+              child: Text('Create New Account'),
             ),
 
             TextButton(
@@ -172,9 +160,9 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const PaymentScreen(title: 'Home Page',)));
+                    MaterialPageRoute(builder: (context) => const PaymentScreen(title: 'Payment',)));
               },
-              child: Text('payment'),
+              child: Text('Payment'),
             ),
 
             TextButton(
@@ -184,9 +172,9 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const RegisterationDetailScreen(title: 'Home Page',)));
+                    MaterialPageRoute(builder: (context) => const RegisterationDetailScreen(title: 'Registeration',)));
               },
-              child: Text('registeration'),
+              child: Text('Registeration'),
             ),
 
             TextButton(
@@ -196,9 +184,9 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const BusinessMangerScreen(title: 'Home Page',)));
+                    MaterialPageRoute(builder: (context) => const BusinessMangerScreen(title: 'Manager',)));
               },
-              child: Text('manager'),
+              child: Text('Manager'),
             ),
 
 

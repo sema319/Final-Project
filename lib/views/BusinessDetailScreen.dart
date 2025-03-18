@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 
 
 
-class businessDetailScreen extends StatefulWidget {
-  const businessDetailScreen({super.key, required this.title});
+class BusinessDetailScreen extends StatefulWidget {
+  const BusinessDetailScreen({super.key, required this.title, required this.bussID});
 
   final String title;
+  final String bussID;
 
   @override
-  State<businessDetailScreen> createState() => businessDetailScreenPageState();
+  State<BusinessDetailScreen> createState() => BusinessDetailScreenPageState();
 
 }
 
-class businessDetailScreenPageState extends State<businessDetailScreen> {
+class BusinessDetailScreenPageState extends State<BusinessDetailScreen> {
 
 
   @override
