@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert'; // Import for JSON decoding
 import 'package:finalproject/models/BusinessModel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Utils/clientConfig.dart'; // Ensure this import is correct for your BusinessModel class
 
@@ -17,6 +18,21 @@ class Homepagescreen extends StatefulWidget {
 }
 
 class HomepagescreenPageState extends State<Homepagescreen> {
+
+
+
+  Future<void> openBussView(bussID, businessName) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('lastBussID', bussID);
+    print("bussID:" + bussID);
+    // Handle onTap event here
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) =>  BusinessDetailScreen(title: businessName!, bussID: bussID,)));
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,10 +104,8 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                             child: ListTile(
                               enabled: true,
                               onTap: () {
-                                // Handle onTap event here
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) =>  BusinessDetailScreen(title: project.businessName!,  bussID:project.businessID ,)));
+
+                                openBussView(project.businessID, project.businessName);
 
                               },
                               title: Text(
@@ -183,10 +197,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                             child: ListTile(
                               enabled: true,
                               onTap: () {
-                                // Handle onTap event here
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) =>  BusinessDetailScreen(title: project.businessName!,  bussID:project.businessID ,)));
+                                openBussView(project.businessID, project.businessName);
                               },
                               title: Text(
                                 project.businessName!,
@@ -278,10 +289,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                             child: ListTile(
                               enabled: true,
                               onTap: () {
-                                // Handle onTap event here
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) =>  BusinessDetailScreen(title: project.businessName!,  bussID:project.businessID ,)));
+                                openBussView(project.businessID, project.businessName);
                               },
                               title: Text(
                                 project.businessName!,
@@ -372,7 +380,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                             child: ListTile(
                               enabled: true,
                               onTap: () {
-                                // Handle onTap event here
+                                openBussView(project.businessID, project.businessName);
                               },
                               title: Text(
                                 project.businessName!,
@@ -464,7 +472,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                             child: ListTile(
                               enabled: true,
                               onTap: () {
-                                // Handle onTap event here
+                                openBussView(project.businessID, project.businessName);
                               },
                               title: Text(
                                 project.businessName!,
@@ -559,7 +567,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                             child: ListTile(
                               enabled: true,
                               onTap: () {
-                                // Handle onTap event here
+                                openBussView(project.businessID, project.businessName);
                               },
                               title: Text(
                                 project.businessName!,
@@ -650,7 +658,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                             child: ListTile(
                               enabled: true,
                               onTap: () {
-                                // Handle onTap event here
+                                openBussView(project.businessID, project.businessName);
                               },
                               title: Text(
                                 project.businessName!,
@@ -741,7 +749,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                             child: ListTile(
                               enabled: true,
                               onTap: () {
-                                // Handle onTap event here
+                                openBussView(project.businessID, project.businessName);
                               },
                               title: Text(
                                 project.businessName!,

@@ -3,7 +3,6 @@ import 'package:finalproject/Utils/clientConfig.dart';
 import 'package:finalproject/Utils/db.dart';
 import 'package:finalproject/views/HomePageScreen.dart';
 import 'package:flutter/material.dart';
-
 import '../models/UserModel.dart';
 import 'package:http/http.dart' as http;
 
@@ -22,6 +21,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
   final _txtPassword = new TextEditingController();
   final _txtPhoneNumber = new TextEditingController();
 
+  /*
   void insertUserFunc() {
     if(_txtFirstName.text != "" && _txtPassword.text != "" && _txtLastName.text != "" && _txtPhoneNumber.text != "" )
       {
@@ -30,8 +30,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
         user.lastName = _txtLastName.text;
         user.password = _txtPassword.text;
         user.phoneNumber = _txtPhoneNumber.text;
-
-        insertUser(user);
+        // insertUser(user);
       }
     else
       {
@@ -39,11 +38,13 @@ class RegisterScreenPageState extends State<RegisterScreen> {
         uti.showMyDialog(context, "חובה", "כל השדות חובה");
       }
   }
+  */
 
   @override
   Widget build(BuildContext context) {
-    Future insertUser(BuildContext context, String firstName, String lastName) async {
 
+
+    Future insertUser(BuildContext context, String firstName, String lastName) async {
       //   SharedPreferences prefs = await SharedPreferences.getInstance();
       //  String? getInfoDeviceSTR = prefs.getString("getInfoDeviceSTR");
       var url = "users/insertUser.php?firstName=" + firstName + "&lastName=" + lastName;
@@ -51,12 +52,13 @@ class RegisterScreenPageState extends State<RegisterScreen> {
       print(serverPath + url);
       // setState(() { });
       // Navigator.pop(context);
-
       Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',))
       );
     }
+
+
 
     return Scaffold(
       appBar: AppBar(

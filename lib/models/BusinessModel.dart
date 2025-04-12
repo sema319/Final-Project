@@ -9,7 +9,7 @@ class BusinessModel{
     this.capacity = 0,
     this.price = 0,
     this.businessTypeID = 0,
-
+    this.imageURL = "",
   });
   String businessID;
   String businessName;
@@ -19,7 +19,7 @@ class BusinessModel{
   int capacity;
   int price;
   int businessTypeID;
-
+  String imageURL;
 
   /*factory BusinessModel.fromJson(Map<String, dynamic> json) => BusinessModel(
       businessID: json["businessID"],
@@ -32,10 +32,7 @@ class BusinessModel{
       businessTypeID: json["businessTypeID"],
   );*/
 
-
   // [{"businessID":1,"businessName":"lalune","address":"baqa","phone1":"0463333223","phone2":"0521231231","capacity":300,"price":4000,"businessTypeID":6,"imageURL":""},{"businessID":2,"businessName":"alnor","address":"baqa","phone1":"0463333223","phone2":"0521231231","capacity":500,"price":4500,"businessTypeID":6,"imageURL":""},{"businessID":3,"businessName":"fruits shop","address":"jatt","phone1":"055555","phone2":"","capacity":0,"price":0,"businessTypeID":3,"imageURL":""}]
-
-
 
 //
   factory BusinessModel.fromJson(Map<String, dynamic> json) {
@@ -47,7 +44,9 @@ class BusinessModel{
       phone2: json["phone2"],
       capacity: json["capacity"],
       price: json["price"],
-      businessTypeID: json["businessTypeID"]
+      businessTypeID: json["businessTypeID"],
+        imageURL: json["imageURL"]
+
     );
   }
 
@@ -62,6 +61,7 @@ class BusinessModel{
     "capacity": capacity,
     "price": price,
     "businessTypeID": businessTypeID,
+    "imageURL": imageURL,
 
   };
 
