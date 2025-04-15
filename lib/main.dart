@@ -1,5 +1,5 @@
+import 'dart:convert';
 import 'dart:io';
-
 import 'package:finalproject/views/BusinessMangerScreen.dart';
 import 'package:finalproject/views/EditProfileScreen.dart';
 import 'package:finalproject/views/HomePageScreen.dart';
@@ -7,8 +7,11 @@ import 'package:finalproject/views/PaymentScreen.dart';
 import 'package:finalproject/views/RegisterScreen.dart';
 import 'package:finalproject/views/ReservationDetailScreen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Utils/Utils.dart';
+import 'Utils/clientConfig.dart';
+import 'models/checkLoginModel.dart';
+import 'package:http/http.dart' as http;
 
 
 
@@ -46,6 +49,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  final _txtPhone = new TextEditingController();
+  final _txtPassword = new TextEditingController();
+
+
+
   checkConction() async {
     try {
       final result = await InternetAddress.lookup('google.com');
@@ -61,10 +69,57 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 
+
+  Future checkLogin(BuildContext context) async {
+
+    //   SharedPreferences prefs = await SharedPreferences.getInstance();
+    //  String? getInfoDeviceSTR = prefs.getString("getInfoDeviceSTR");
+    var url = "checkLogin/checkLogin.php?phone=" + _txtPhone.text + "&password=" + _txtPassword.text;
+    final response = await http.get(Uri.parse(serverPath + url));
+    print(serverPath + url);
+    // setState(() { });
+    // Navigator.pop(context);
+    if(checkLoginModel.fromJson(jsonDecode(response.body)).userID == 0)
+    {
+      // return 'ת.ז ו/או הסיסמה שגויים';
+      var uti = new Utils();
+      uti.showMyDialog(context, "Error", "phone or email is wrong");
+    }
+    else
+    {
+      // print("SharedPreferences 1");
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('token', checkLoginModel.fromJson(jsonDecode(response.body)).userID!.toString());
+      await prefs.setString('phone', _txtPhone.text);
+      await prefs.setString('password', _txtPassword.text);
+
+      // await prefs.setString('userType', checkLoginModel.fromJson(jsonDecode(response.body)).userTypeID!);
+      // return null;
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',)));
+    }
+  }
+
+
+
+  fillSavedPars() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _txtPhone.text = prefs.get("phone").toString();
+    _txtPassword.text = prefs.get("password").toString();
+    if(_txtPhone.text != "" && _txtPassword.text != "")
+    {
+      checkLogin(context);
+    }
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
     checkConction();
-
+    fillSavedPars();
 
     return Scaffold(
     appBar: AppBar(
@@ -101,6 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             TextField(
+              controller: _txtPhone,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'enter your PhoneNumber'
@@ -112,6 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             TextField(
+              controller: _txtPassword,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'enter your Password'
@@ -122,11 +179,13 @@ class _MyHomePageState extends State<MyHomePage> {
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
-              onPressed: () {Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',)));
+              onPressed: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',)));
+                checkLogin(context);
                 },
-              child: Text('Next'),
+              child: Text('Login'),
             ),
 
             Text(
