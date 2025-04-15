@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:finalproject/views/EditProfileScreen.dart';
 import 'package:finalproject/views/BusinessDetailScreen.dart';
 import 'package:flutter/material.dart';
@@ -108,22 +109,35 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                                 openBussView(project.businessID, project.businessName);
 
                               },
-                              title: Text(
-                                project.businessName!,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                              title:
+                              Column(
+                                children: [
+                                  Text(
+                                    project.businessName!,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    project.capacity.toString(),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  CachedNetworkImage(
+                                    width: 100,
+                                    height: 60,
+                                    placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                    imageUrl: project.imageURL,
+                                  ),
+                                ],
                               ),
-                              subtitle: Text(
-                                project.capacity.toString(),
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
+
                               isThreeLine: false,
                             ),
                           ),

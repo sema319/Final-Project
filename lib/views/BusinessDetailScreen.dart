@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Utils/clientConfig.dart';
@@ -59,10 +60,17 @@ class BusinessDetailScreenPageState extends State<BusinessDetailScreen> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image(
-              image: NetworkImage(_currBuss.imageURL),
+
+            Expanded(
+              child: CachedNetworkImage(
+                imageUrl: _currBuss.imageURL,
+                fit: BoxFit.fitWidth, // fill entire space
+                placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
             ),
-            
+
+
             Text("Name: " + _currBuss.businessName),
             Text("phone1: " + _currBuss.phone1),
             Text("phone2: " + _currBuss.phone2),
