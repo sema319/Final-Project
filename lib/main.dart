@@ -1,12 +1,11 @@
 import 'dart:io';
 
 import 'package:finalproject/views/BusinessMangerScreen.dart';
-import 'package:finalproject/views/DateReservation.dart';
 import 'package:finalproject/views/EditProfileScreen.dart';
 import 'package:finalproject/views/HomePageScreen.dart';
 import 'package:finalproject/views/PaymentScreen.dart';
 import 'package:finalproject/views/RegisterScreen.dart';
-import 'package:finalproject/views/RegisterationDetailScreen.dart';
+import 'package:finalproject/views/ReservationDetailScreen.dart';
 import 'package:flutter/material.dart';
 
 import 'Utils/Utils.dart';
@@ -62,12 +61,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
 
-
-  void _incrementCounter() {
-    setState(() {
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     checkConction();
@@ -79,10 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
       //  backgroundColor: Theme.of(context).colorScheme.inversePrimary,
 
         title: IconButton(
-
           icon: Icon(Icons.person),
           color: Colors.black,
-
           iconSize: 30,
           onPressed: () {
             Navigator.push(
@@ -104,7 +95,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
 
             Text(
               "PhoneNumber:", style: TextStyle(fontSize: 20),
@@ -199,17 +189,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const BusinessMangerScreen(title: 'Manager',)));
-              },
-              child: Text('Manager'),
-            ),
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const DateReservationScreen(title: 'Manager',)));
               },
               child: Text('Manager'),
             ),

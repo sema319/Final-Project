@@ -21,41 +21,31 @@ class RegisterScreenPageState extends State<RegisterScreen> {
   final _txtPassword = new TextEditingController();
   final _txtPhoneNumber = new TextEditingController();
 
-  /*
-  void insertUserFunc() {
-    if(_txtFirstName.text != "" && _txtPassword.text != "" && _txtLastName.text != "" && _txtPhoneNumber.text != "" )
-      {
-        var user = new User();
-        user.firstName = _txtFirstName.text;
-        user.lastName = _txtLastName.text;
-        user.password = _txtPassword.text;
-        user.phoneNumber = _txtPhoneNumber.text;
-        // insertUser(user);
-      }
-    else
-      {
-        var uti = new Utils();
-        uti.showMyDialog(context, "חובה", "כל השדות חובה");
-      }
-  }
-  */
 
   @override
   Widget build(BuildContext context) {
 
 
     Future insertUser(BuildContext context, String firstName, String lastName) async {
-      //   SharedPreferences prefs = await SharedPreferences.getInstance();
-      //  String? getInfoDeviceSTR = prefs.getString("getInfoDeviceSTR");
-      var url = "users/insertUser.php?firstName=" + firstName + "&lastName=" + lastName;
-      final response = await http.get(Uri.parse(serverPath + url));
-      print(serverPath + url);
-      // setState(() { });
-      // Navigator.pop(context);
-      Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',))
-      );
+      if(_txtFirstName.text != "" && _txtLastName.text != "" && _txtPassword.text != "" && _txtPhoneNumber.text != "")
+        {
+          var url = "users/insertUser.php?firstName=" + _txtFirstName.text + "&lastName=" + _txtLastName.text +
+                 "&password=" + _txtPassword.text + "&phone=" + _txtPhoneNumber.text;
+          final response = await http.get(Uri.parse(serverPath + url));
+          print(serverPath + url);
+          // setState(() { });
+          // Navigator.pop(context);
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',))
+          );
+        }
+      else
+        {
+          var uti = new Utils();
+          uti.showMyDialog(context, "חובה", "כל השדות חובה");
+        }
+
     }
 
 
@@ -115,7 +105,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
 
                 insertUser(context,  _txtFirstName.text, _txtLastName.text,);
               },
-              child: Text('register'),
+              child: Text('Register'),
             ),
 
 
