@@ -37,9 +37,19 @@ class HomepagescreenPageState extends State<Homepagescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+      appBar: AppBar( title: IconButton(
+        icon: Icon(Icons.person),
+        color: Colors.black,
+        iconSize: 30,
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const EditProfileScreen(title: 'Edit Profile',)
+              )
+          );
+        },
+
+      ),
       ),
       body: SingleChildScrollView(
         child: Column(

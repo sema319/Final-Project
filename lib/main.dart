@@ -125,24 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
     appBar: AppBar(
 
       //  backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-        title: IconButton(
-          icon: Icon(Icons.person),
-          color: Colors.black,
-          iconSize: 30,
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const EditProfileScreen(title: 'Edit Profile',)
-                )
-            );
-          },
-
-
-        ),
-
       ),
-
 
       body: Center(
 
@@ -251,7 +234,6 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('Manager'),
             ),
-
             /*TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),

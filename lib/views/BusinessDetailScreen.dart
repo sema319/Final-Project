@@ -1,32 +1,27 @@
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:finalproject/views/ReservationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Utils/clientConfig.dart';
 import '../models/BusinessModel.dart';
 import 'package:http/http.dart' as http;
 
-
-
 class BusinessDetailScreen extends StatefulWidget {
-  const BusinessDetailScreen({super.key, required this.title, required this.bussID});
+  const BusinessDetailScreen(
+      {super.key, required this.title, required this.bussID});
 
   final String title;
   final String bussID;
 
   @override
   State<BusinessDetailScreen> createState() => BusinessDetailScreenPageState();
-
 }
-
 
 late BusinessModel _currBuss;
 
-
 class BusinessDetailScreenPageState extends State<BusinessDetailScreen> {
-
-
   Future<void> getBussDetails() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     var bussID = await prefs.get('lastBussID');
@@ -36,18 +31,12 @@ class BusinessDetailScreenPageState extends State<BusinessDetailScreen> {
     print(serverPath + url);
 
     _currBuss = BusinessModel.fromJson(json.decode(response.body));
-    setState(() {
-
-    });
-
+    setState(() {});
   }
-
 
   @override
   Widget build(BuildContext context) {
-
     getBussDetails();
-
 
     return Scaffold(
       appBar: AppBar(
@@ -55,36 +44,39 @@ class BusinessDetailScreenPageState extends State<BusinessDetailScreen> {
         title: Text(widget.title),
       ),
       body: Center(
-
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
             Expanded(
               child: CachedNetworkImage(
                 imageUrl: _currBuss.imageURL,
                 fit: BoxFit.fitWidth, // fill entire space
-                placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                placeholder: (context, url) =>
+                    Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
-
-
             Text("Name: " + _currBuss.businessName),
             Text("phone1: " + _currBuss.phone1),
             Text("phone2: " + _currBuss.phone2),
             Text("capcity: " + _currBuss.capacity.toString()),
             Text("address: " + _currBuss.address),
             Text("price: " + _currBuss.price.toString()),
-
-
-
-
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ReservationScreen( title: 'Reservation',)));
+              },
+              child: Text('Reserve a Date'),
+            ),
           ],
         ),
       ),
-
     );
   }
 }
