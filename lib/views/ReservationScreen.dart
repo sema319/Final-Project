@@ -88,7 +88,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
     final formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate!);
 
     try {
-      var checkUrl = "checkDateAvailability.php?bussID=$bussID&date=$formattedDate";
+      var checkUrl = "events/checkDate.php?bussID=$bussID&date=$formattedDate";
 
       print("Checking availability URL: ${serverPath + checkUrl}");
 
@@ -176,7 +176,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
 
     try {
       var bookUrl =
-          "insertEvent.php?bussID=$bussID&date=$formattedDate&userID=$userID";
+          "events/insertEvent.php?bussID=$bussID&date=$formattedDate&userID=$userID";
 
       print("Booking URL: ${serverPath + bookUrl}");
 
@@ -257,7 +257,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
             padding: const EdgeInsets.all(8),
             color: isDateAvailable ? Colors.green[100] : Colors.red[100],
             child: Text(
-              isDateAvailable ? 'التاريخ متاح' : 'التاريخ غير متاح',
+              isDateAvailable ? 'is Avaiable' : 'is not Avaiable',
               style: TextStyle(
                 color: isDateAvailable ? Colors.green[800] : Colors.red[800],
                 fontWeight: FontWeight.bold,
