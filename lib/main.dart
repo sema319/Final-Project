@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:finalproject/views/BusinessMangerScreen.dart';
 import 'package:finalproject/views/EditProfileScreen.dart';
+import 'package:finalproject/views/EventsScreen.dart';
 import 'package:finalproject/views/HomePageScreen.dart';
 import 'package:finalproject/views/PaymentScreen.dart';
 import 'package:finalproject/views/RegisterScreen.dart';
@@ -234,17 +235,18 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('Manager'),
             ),
-            /*TextButton(
+            TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const DateReservationScreen(title: 'date',)));
+                    MaterialPageRoute(builder: (context) => const EventsScreen(title: 'Events',)));
               },
-              child: Text('date'),
-            ),*/
+              child: Text('MY EVENTS'),
+            ),
+
           ],
         ),
       ),

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:intl/intl.dart'; // Added for proper date formatting
+import 'package:intl/intl.dart';
 
 import '../Utils/Utils.dart';
 import '../Utils/clientConfig.dart';
@@ -54,9 +54,8 @@ class _DatePickerExampleState extends State<DatePickerExample> {
     if (pickedDate != null) {
       setState(() {
         selectedDate = pickedDate;
-        isAvailabilityChecked = false; // Reset availability check when date changes
+        isAvailabilityChecked = false;
       });
-      // Check availability automatically when a date is selected
       await checkAvailability();
     }
   }
@@ -64,7 +63,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
   Future<void> checkAvailability() async {
     if (selectedDate == null) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('يرجى اختيار تاريخ أولاً')));
+          .showSnackBar(const SnackBar(content: Text('Please select a date first')));
       return;
     }
 
@@ -80,11 +79,10 @@ class _DatePickerExampleState extends State<DatePickerExample> {
         isLoading = false;
       });
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('يرجى تسجيل الدخول أولاً')));
+          .showSnackBar(const SnackBar(content: Text('Please log in first')));
       return;
     }
 
-    // Format date properly using DateFormat
     final formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate!);
 
     try {
@@ -111,19 +109,19 @@ class _DatePickerExampleState extends State<DatePickerExample> {
 
           if (isDateAvailable) {
             ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('التاريخ متاح للحجز')));
+                .showSnackBar(const SnackBar(content: Text('The date is available for booking')));
           } else {
             ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('هذا التاريخ محجوز بالفعل')));
+                .showSnackBar(const SnackBar(content: Text('This date is already booked')));
           }
         } catch (e) {
           print("JSON parsing error: $e");
           ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text('خطأ في معالجة البيانات')));
+              .showSnackBar(const SnackBar(content: Text('Error processing the data')));
         }
       } else {
         ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('خطأ في الاتصال بالخادم')));
+            .showSnackBar(const SnackBar(content: Text('Server connection error')));
       }
     } catch (e) {
       print("Check availability error: $e");
@@ -131,26 +129,23 @@ class _DatePickerExampleState extends State<DatePickerExample> {
         isLoading = false;
       });
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('خطأ في الاتصال بالخادم')));
+          .showSnackBar(const SnackBar(content: Text('Server connection error')));
     }
   }
 
   Future<void> saveEvent(BuildContext context) async {
     if (selectedDate == null) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('يرجى اختيار تاريخ أولاً')));
+          .showSnackBar(const SnackBar(content: Text('Please select a date first')));
       return;
     }
 
-    // If availability hasn't been checked yet, check it first
     if (!isAvailabilityChecked) {
       await checkAvailability();
-      // Return if it was just checked and not available
       if (!isDateAvailable) return;
     } else if (!isDateAvailable) {
-      // If we already know it's not available, show message and return
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('هذا التاريخ محجوز بالفعل')));
+          .showSnackBar(const SnackBar(content: Text('This date is already booked')));
       return;
     }
 
@@ -167,11 +162,10 @@ class _DatePickerExampleState extends State<DatePickerExample> {
         isLoading = false;
       });
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('يرجى تسجيل الدخول أولاً')));
+          .showSnackBar(const SnackBar(content: Text('Please log in first')));
       return;
     }
 
-    // Format date properly using DateFormat
     final formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate!);
 
     try {
@@ -195,30 +189,26 @@ class _DatePickerExampleState extends State<DatePickerExample> {
             var jsonResponse = jsonDecode(bookResponse.body);
 
             if (jsonResponse['result'] == '1') {
-              // Show success message
               ScaffoldMessenger.of(context)
-                  .showSnackBar(const SnackBar(content: Text('تم الحجز بنجاح')));
-
-              // Navigate to home page
+                  .showSnackBar(const SnackBar(content: Text('Booking completed successfully')));
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
                       const Homepagescreen(title: 'Home Page')));
             } else {
-              // Show specific error message if available
-              String errorMessage = jsonResponse['message'] ?? 'حدث خطأ أثناء الحجز';
+              String errorMessage = jsonResponse['message'] ?? 'An error occurred during booking';
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(errorMessage)));
             }
           } catch (e) {
             print("JSON parsing error: $e");
             ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('خطأ في معالجة البيانات')));
+                .showSnackBar(const SnackBar(content: Text('Error processing the data')));
           }
         } else {
           ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text('خطأ في الاتصال بالخادم')));
+              .showSnackBar(const SnackBar(content: Text('Server connection error')));
         }
       } catch (e) {
         print("HTTP error: $e");
@@ -226,7 +216,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
           isLoading = false;
         });
         ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('خطأ في الاتصال بالخادم')));
+            .showSnackBar(const SnackBar(content: Text('Server connection error')));
       }
     } catch (e) {
       print("General error: $e");
@@ -234,7 +224,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
         isLoading = false;
       });
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('حدث خطأ غير متوقع')));
+          .showSnackBar(const SnackBar(content: Text('Unexpected error occurred')));
     }
   }
 
@@ -257,7 +247,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
             padding: const EdgeInsets.all(8),
             color: isDateAvailable ? Colors.green[100] : Colors.red[100],
             child: Text(
-              isDateAvailable ? 'is Avaiable' : 'is not Avaiable',
+              isDateAvailable ? 'is Available' : 'Not available',
               style: TextStyle(
                 color: isDateAvailable ? Colors.green[800] : Colors.red[800],
                 fontWeight: FontWeight.bold,
@@ -274,7 +264,8 @@ class _DatePickerExampleState extends State<DatePickerExample> {
             backgroundColor: MaterialStateProperty.all<Color>(
                 isDateAvailable ? Colors.blue : Colors.grey),
             padding: MaterialStateProperty.all<EdgeInsets>(
-                const EdgeInsets.symmetric(horizontal: 30, vertical: 15)),
+                const EdgeInsets.symmetric(
+                    horizontal: 30, vertical: 15)),
           ),
           onPressed: isDateAvailable ? () => saveEvent(context) : null,
           child: const Text('Save My Event'),
