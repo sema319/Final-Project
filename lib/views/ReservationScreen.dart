@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 
 import '../Utils/Utils.dart';
 import '../Utils/clientConfig.dart';
+import 'EventsScreen.dart';
 import 'HomePageScreen.dart';
 
 class ReservationScreen extends StatefulWidget {
@@ -62,8 +63,8 @@ class _DatePickerExampleState extends State<DatePickerExample> {
 
   Future<void> checkAvailability() async {
     if (selectedDate == null) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Please select a date first')));
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Please select a date first')));
       return;
     }
 
@@ -108,35 +109,35 @@ class _DatePickerExampleState extends State<DatePickerExample> {
           });
 
           if (isDateAvailable) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('The date is available for booking')));
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text('The date is available for booking')));
           } else {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('This date is already booked')));
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('This date is already booked')));
           }
         } catch (e) {
           print("JSON parsing error: $e");
-          ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text('Error processing the data')));
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Error processing the data')));
         }
       } else {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Server connection error')));
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Server connection error')));
       }
     } catch (e) {
       print("Check availability error: $e");
       setState(() {
         isLoading = false;
       });
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Server connection error')));
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Server connection error')));
     }
   }
 
   Future<void> saveEvent(BuildContext context) async {
     if (selectedDate == null) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Please select a date first')));
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Please select a date first')));
       return;
     }
 
@@ -144,8 +145,8 @@ class _DatePickerExampleState extends State<DatePickerExample> {
       await checkAvailability();
       if (!isDateAvailable) return;
     } else if (!isDateAvailable) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('This date is already booked')));
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('This date is already booked')));
       return;
     }
 
@@ -189,42 +190,43 @@ class _DatePickerExampleState extends State<DatePickerExample> {
             var jsonResponse = jsonDecode(bookResponse.body);
 
             if (jsonResponse['result'] == '1') {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(const SnackBar(content: Text('Booking completed successfully')));
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('Booking completed successfully')));
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                      const Homepagescreen(title: 'Home Page')));
+                          const Homepagescreen(title: 'Home Page')));
             } else {
-              String errorMessage = jsonResponse['message'] ?? 'An error occurred during booking';
+              String errorMessage =
+                  jsonResponse['message'] ?? 'An error occurred during booking';
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(errorMessage)));
             }
           } catch (e) {
             print("JSON parsing error: $e");
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Error processing the data')));
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Error processing the data')));
           }
         } else {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(const SnackBar(content: Text('Server connection error')));
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Server connection error')));
         }
       } catch (e) {
         print("HTTP error: $e");
         setState(() {
           isLoading = false;
         });
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Server connection error')));
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Server connection error')));
       }
     } catch (e) {
       print("General error: $e");
       setState(() {
         isLoading = false;
       });
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Unexpected error occurred')));
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Unexpected error occurred')));
     }
   }
 
@@ -258,18 +260,27 @@ class _DatePickerExampleState extends State<DatePickerExample> {
         isLoading
             ? const CircularProgressIndicator()
             : TextButton(
-          style: ButtonStyle(
-            foregroundColor:
-            MaterialStateProperty.all<Color>(Colors.white),
-            backgroundColor: MaterialStateProperty.all<Color>(
-                isDateAvailable ? Colors.blue : Colors.grey),
-            padding: MaterialStateProperty.all<EdgeInsets>(
-                const EdgeInsets.symmetric(
-                    horizontal: 30, vertical: 15)),
-          ),
-          onPressed: isDateAvailable ? () => saveEvent(context) : null,
-          child: const Text('Save My Event'),
-        ),
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      isDateAvailable ? Colors.blue : Colors.grey),
+                  padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 15)),
+                ),
+                onPressed: isDateAvailable
+                    ? () async {
+                        await saveEvent(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const EventsScreen(title: 'Events')),
+                        );
+                      }
+                    : null,
+                child: const Text('Save My Event'),
+              ),
       ],
     );
   }

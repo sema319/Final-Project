@@ -45,7 +45,6 @@ class RegisterScreenPageState extends State<RegisterScreen> {
           var uti = new Utils();
           uti.showMyDialog(context, "חובה", "כל השדות חובה");
         }
-
     }
 
 

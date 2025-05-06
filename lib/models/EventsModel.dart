@@ -1,25 +1,34 @@
-class WorkLogModel {
-  final String? date;
-  final String? ariveHour;
-  final String? exitHour;
-  final String? totalHours;
-  final String? comments;
+class EventModel {
 
-  WorkLogModel({
-    this.date,
-    this.ariveHour,
-    this.exitHour,
-    this.totalHours,
-    this.comments,
+
+  EventModel({
+    this.date = "",
+    this.eventID = "",
+    this.bussID = "",
+
   });
 
-  factory WorkLogModel.fromJson(Map<String, dynamic> json) {
-    return WorkLogModel(
+  String date;
+  String eventID;
+  String bussID;
+
+
+  factory EventModel.fromJson(Map<String, dynamic> json) {
+    return EventModel(
       date: json['date'],
-      ariveHour: json['ariveHour'],
-      exitHour: json['exitHour'],
-      totalHours: json['totalHours'],
-      comments: json['comments'],
+      eventID: json['eventID'],
+      bussID: json['businessName'],
+
     );
   }
+
+
+
+
+
+  Map<String, dynamic> toJson() => {
+    "date": date,
+    "eventID": eventID,
+    "bussID": bussID,
+  };
 }

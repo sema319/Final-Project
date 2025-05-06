@@ -7,7 +7,8 @@ import 'dart:convert'; // Import for JSON decoding
 import 'package:finalproject/models/BusinessModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Utils/clientConfig.dart'; // Ensure this import is correct for your BusinessModel class
+import '../Utils/clientConfig.dart';
+import 'EventsScreen.dart'; // Ensure this import is correct for your BusinessModel class
 
 class Homepagescreen extends StatefulWidget {
   const Homepagescreen({super.key, required this.title});
@@ -37,19 +38,58 @@ class HomepagescreenPageState extends State<Homepagescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( title: IconButton(
-        icon: Icon(Icons.person),
-        color: Colors.black,
-        iconSize: 30,
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const EditProfileScreen(title: 'Edit Profile',)
-              )
-          );
-        },
-
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('My Events'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                      const EventsScreen(title: 'Events')),
+                );
+                // Navigate to Home
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Profile'),
+              onTap: () {
+                Navigator.pop(context);
+                // Navigate to Profile
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Logout'),
+              onTap: () {
+                Navigator.pop(context);
+                // Do logout
+              },
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

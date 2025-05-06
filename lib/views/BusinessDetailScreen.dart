@@ -22,17 +22,18 @@ class BusinessDetailScreen extends StatefulWidget {
 late BusinessModel _currBuss;
 
 class BusinessDetailScreenPageState extends State<BusinessDetailScreen> {
+
   Future<void> getBussDetails() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     var bussID = await prefs.get('lastBussID');
-
     var url = "businesses/getBussDetails.php?bussID=" + bussID.toString();
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath + url);
-
     _currBuss = BusinessModel.fromJson(json.decode(response.body));
     setState(() {});
   }
+
+
 
   @override
   Widget build(BuildContext context) {

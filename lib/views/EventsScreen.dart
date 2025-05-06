@@ -3,10 +3,8 @@ import 'package:finalproject/views/EditProfileScreen.dart';
 import 'package:finalproject/views/BusinessDetailScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:finalproject/models/BusinessModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'dart:convert';
 import '../Utils/clientConfig.dart';
 import '../models/EventsModel.dart';
 
@@ -20,19 +18,46 @@ class EventsScreen extends StatefulWidget {
 }
 
 
+
 class EventsScreenPageState extends State<EventsScreen> {
-  Future<List<WorkLogModel>> getMyLocations() async {
-    var url = "users/getDetailsHours.php";
+
+
+
+  Future<List<EventModel>> getMyEvents() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var userID = await prefs.getString('token');
+
+    var url = "events/getMyEvents.php?userID=" + userID!;
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath + url);
-    List<WorkLogModel> arr = [];
+    List<EventModel> arr = [];
 
     for (Map<String, dynamic> i in json.decode(response.body)) {
-      arr.add(WorkLogModel.fromJson(i));
+      arr.add(EventModel.fromJson(i));
     }
 
     return arr;
   }
+
+
+
+  Future deleteEvent(BuildContext context, String eventID) async {
+
+      var url = "events/deleteEvent.php?eventID=" + eventID;
+      final response = await http.get(Uri.parse(serverPath + url));
+      print(serverPath + url);
+      setState(() { });
+      // Navigator.pop(context);
+      // Navigator.push(
+      //     context,
+      //     MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',))
+      // );
+
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +67,7 @@ class EventsScreenPageState extends State<EventsScreen> {
         title: Text(widget.title),
       ),
       body: FutureBuilder(
-        future: getMyLocations(),
+        future: getMyEvents(),
         builder: (context, projectSnap) {
           if (projectSnap.hasData) {
             if (projectSnap.data!.isEmpty) {
@@ -63,7 +88,7 @@ class EventsScreenPageState extends State<EventsScreen> {
                     child: ListView.builder(
                       itemCount: projectSnap.data!.length,
                       itemBuilder: (context, index) {
-                        WorkLogModel project = projectSnap.data![index];
+                        EventModel project = projectSnap.data![index];
 
                         return Card(
                           child: ListTile(
@@ -76,31 +101,39 @@ class EventsScreenPageState extends State<EventsScreen> {
                                   color: Colors.black),
                             ),
                             subtitle: Text(
-                              "[${project.ariveHour ?? ''}-${project.exitHour ?? ''}]\n${project.comments ?? ''}",
+                              "[${project.eventID ?? ''}-${project.bussID ?? ''}]\n${project.date ?? ''}",
                               style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
                             ),
-                            trailing: Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(5)),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 4,
-                              ),
-                              child: Text(
-                                project.totalHours ?? '',
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
+                            trailing: IconButton(
+                              icon: Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                // Handle delete logic here
+                                print("Delete pressed");
+                                deleteEvent(context, project.eventID!);
+                              },
                             ),
+                            // trailing: Container(
+                            //   decoration: const BoxDecoration(
+                            //     color: Colors.blue,
+                            //     borderRadius:
+                            //     BorderRadius.all(Radius.circular(5)),
+                            //   ),
+                            //   padding: const EdgeInsets.symmetric(
+                            //     horizontal: 12,
+                            //     vertical: 4,
+                            //   ),
+                            //   child: Text(
+                            //     project.totalHours ?? '',
+                            //     overflow: TextOverflow.ellipsis,
+                            //     style: TextStyle(
+                            //         fontSize: 16,
+                            //         fontWeight: FontWeight.bold,
+                            //         color: Colors.white),
+                            //   ),
+                            // ),
                             isThreeLine: false,
                           ),
                         );
@@ -126,3 +159,4 @@ class EventsScreenPageState extends State<EventsScreen> {
     );
   }
 }
+
