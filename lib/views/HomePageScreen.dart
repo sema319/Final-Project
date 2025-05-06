@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Utils/clientConfig.dart';
 import 'EventsScreen.dart'; // Ensure this import is correct for your BusinessModel class
+import 'package:finalproject/main.dart'; // Ensure this import is correct for your BusinessModel class
 
 class Homepagescreen extends StatefulWidget {
   const Homepagescreen({super.key, required this.title});
@@ -83,8 +84,12 @@ class HomepagescreenPageState extends State<Homepagescreen> {
             ListTile(
               leading: Icon(Icons.logout),
               title: Text('Logout'),
+
               onTap: () {
                 Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Sign Up',)));
                 // Do logout
               },
             ),

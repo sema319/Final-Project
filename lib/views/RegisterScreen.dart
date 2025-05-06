@@ -104,7 +104,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
 
                 insertUser(context,  _txtFirstName.text, _txtLastName.text,);
               },
-              child: Text('Register'),
+              child: Text('Enter'),
             ),
 
 

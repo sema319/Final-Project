@@ -27,6 +27,11 @@ class PaymentScreenPageState extends State<PaymentScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(
+              "لتأكيد عملية الحجز، يجب دفع عربون.",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
             TextButton(
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),

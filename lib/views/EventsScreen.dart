@@ -110,30 +110,32 @@ class EventsScreenPageState extends State<EventsScreen> {
                             trailing: IconButton(
                               icon: Icon(Icons.delete, color: Colors.red),
                               onPressed: () {
-                                // Handle delete logic here
-                                print("Delete pressed");
-                                deleteEvent(context, project.eventID!);
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Cancel Reservation"),
+                                      content: Text("Are you sure you want to cancel this reservation?"),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop(); // No
+                                          },
+                                          child: Text("No", style: TextStyle(color: Colors.black)),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop(); // Close dialog
+                                            deleteEvent(context, project.eventID!); // Perform deletion
+                                          },
+                                          child: Text("Yes", style: TextStyle(color: Colors.red)),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
                               },
                             ),
-                            // trailing: Container(
-                            //   decoration: const BoxDecoration(
-                            //     color: Colors.blue,
-                            //     borderRadius:
-                            //     BorderRadius.all(Radius.circular(5)),
-                            //   ),
-                            //   padding: const EdgeInsets.symmetric(
-                            //     horizontal: 12,
-                            //     vertical: 4,
-                            //   ),
-                            //   child: Text(
-                            //     project.totalHours ?? '',
-                            //     overflow: TextOverflow.ellipsis,
-                            //     style: TextStyle(
-                            //         fontSize: 16,
-                            //         fontWeight: FontWeight.bold,
-                            //         color: Colors.white),
-                            //   ),
-                            // ),
                             isThreeLine: false,
                           ),
                         );

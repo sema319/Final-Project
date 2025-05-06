@@ -164,11 +164,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
               onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',)));
-                checkLogin(context);
-                },
+                if (_txtPhone.text.isEmpty || _txtPassword.text.isEmpty) {
+                  // إذا واحد من الحقول فاضي
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text("خطأ"),
+                      content: Text("الرجاء تعبئة كافة الحقول"),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: Text("حسناً"),
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  // إذا الحقول معبّاة، كمل عملية تسجيل الدخول
+                  checkLogin(context);
+                }
+              },
               child: Text('Login'),
             ),
 
@@ -187,66 +202,6 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('Create New Account'),
             ),
-
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',)));
-              },
-              child: Text('HomePage'),
-            ),
-
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const PaymentScreen(title: 'Payment',)));
-              },
-              child: Text('Payment'),
-            ),
-
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const RegisterationDetailScreen(title: 'Registeration',)));
-              },
-              child: Text('Registeration'),
-            ),
-
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const BusinessMangerScreen(title: 'Manager',)));
-              },
-              child: Text('Manager'),
-            ),
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const EventsScreen(title: 'Events',)));
-              },
-              child: Text('MY EVENTS'),
-            ),
-
           ],
         ),
       ),
