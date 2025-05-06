@@ -17,12 +17,7 @@ class EventsScreen extends StatefulWidget {
   State<EventsScreen> createState() => EventsScreenPageState();
 }
 
-
-
 class EventsScreenPageState extends State<EventsScreen> {
-
-
-
   Future<List<EventModel>> getMyEvents() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     var userID = await prefs.getString('token');
@@ -39,25 +34,12 @@ class EventsScreenPageState extends State<EventsScreen> {
     return arr;
   }
 
-
-
   Future deleteEvent(BuildContext context, String eventID) async {
-
-      var url = "events/deleteEvent.php?eventID=" + eventID;
-      final response = await http.get(Uri.parse(serverPath + url));
-      print(serverPath + url);
-      setState(() { });
-      // Navigator.pop(context);
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',))
-      // );
-
+    var url = "events/deleteEvent.php?eventID=" + eventID;
+    final response = await http.get(Uri.parse(serverPath + url));
+    print(serverPath + url);
+    setState(() {});
   }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -88,27 +70,34 @@ class EventsScreenPageState extends State<EventsScreen> {
                     child: ListView.builder(
                       itemCount: projectSnap.data!.length,
                       itemBuilder: (context, index) {
-                        EventModel project = projectSnap.data![index];
+                        EventModel event = projectSnap.data![index];
 
                         return Card(
+                          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                           child: ListTile(
+                            contentPadding: EdgeInsets.all(16),
                             onTap: () {},
                             title: Text(
-                              project.date ?? '',
+                              event.date ?? 'No Date',
                               style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
                             ),
                             subtitle: Text(
-                              "[${project.eventID ?? ''}-${project.bussID ?? ''}]\n${project.date ?? ''}",
+                              "Event ID: ${event.eventID ?? ''} | Business Name: ${event.bussID ?? ''}",
                               style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                                fontSize: 14,
+                                color: Colors.grey[700],
+                              ),
                             ),
                             trailing: IconButton(
-                              icon: Icon(Icons.delete, color: Colors.red),
+                              icon: Icon(Icons.delete, color: Colors.red, size: 28),
                               onPressed: () {
                                 showDialog(
                                   context: context,
@@ -126,7 +115,7 @@ class EventsScreenPageState extends State<EventsScreen> {
                                         TextButton(
                                           onPressed: () {
                                             Navigator.of(context).pop(); // Close dialog
-                                            deleteEvent(context, project.eventID!); // Perform deletion
+                                            deleteEvent(context, event.eventID!); // Perform deletion
                                           },
                                           child: Text("Yes", style: TextStyle(color: Colors.red)),
                                         ),
@@ -161,4 +150,3 @@ class EventsScreenPageState extends State<EventsScreen> {
     );
   }
 }
-

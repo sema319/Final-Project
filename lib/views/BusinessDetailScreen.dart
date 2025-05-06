@@ -22,58 +22,89 @@ class BusinessDetailScreen extends StatefulWidget {
 late BusinessModel _currBuss;
 
 class BusinessDetailScreenPageState extends State<BusinessDetailScreen> {
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    getBussDetails();
+  }
 
   Future<void> getBussDetails() async {
+    setState(() {
+      _isLoading = true;
+    });
+
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     var bussID = await prefs.get('lastBussID');
     var url = "businesses/getBussDetails.php?bussID=" + bussID.toString();
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath + url);
     _currBuss = BusinessModel.fromJson(json.decode(response.body));
-    setState(() {});
+
+    setState(() {
+      _isLoading = false;
+    });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
-    getBussDetails();
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Expanded(
+            Container(
+              height: MediaQuery.of(context).size.height * 0.4, // 40% of screen height
+              width: double.infinity,
               child: CachedNetworkImage(
                 imageUrl: _currBuss.imageURL,
-                fit: BoxFit.fitWidth, // fill entire space
+                fit: BoxFit.cover,
                 placeholder: (context, url) =>
                     Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
-            Text("Name: " + _currBuss.businessName),
-            Text("phone1: " + _currBuss.phone1),
-            Text("phone2: " + _currBuss.phone2),
-            Text("capcity: " + _currBuss.capacity.toString()),
-            Text("address: " + _currBuss.address),
-            Text("price: " + _currBuss.price.toString()),
-            TextButton(
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Name: ${_currBuss.businessName}",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8),
+                  Text("Phone 1: ${_currBuss.phone1}"),
+                  Text("Phone 2: ${_currBuss.phone2}"),
+                  Text("Capacity: ${_currBuss.capacity.toString()}"),
+                  Text("Address: ${_currBuss.address}"),
+                  Text("Price: ${_currBuss.price.toString()}"),
+                  SizedBox(height: 16),
+                  Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ReservationScreen(title: 'Reservation'),
+                          ),
+                        );
+                      },
+                      child: Text('Reserve a Date', style: TextStyle(fontSize: 16)),
+                    ),
+                  ),
+                ],
               ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ReservationScreen( title: 'Reservation',)));
-              },
-              child: Text('Reserve a Date'),
             ),
           ],
         ),
