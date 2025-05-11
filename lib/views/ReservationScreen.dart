@@ -6,9 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 
-import '../Utils/Utils.dart';
 import '../Utils/clientConfig.dart';
-import 'EventsScreen.dart';
 import 'HomePageScreen.dart';
 
 class ReservationScreen extends StatefulWidget {
@@ -28,6 +26,7 @@ class ReservationScreenPageState extends State<ReservationScreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
+      body: const Center(child: DatePickerExample()),
     );
   }
 }
@@ -39,7 +38,8 @@ class DatePickerExample extends StatefulWidget {
   State<DatePickerExample> createState() => _DatePickerExampleState();
 }
 
-class _DatePickerExampleState extends State<DatePickerExample> {
+class _DatePickerExampleState extends State<DatePickerExample>
+{
   DateTime? selectedDate;
   bool isLoading = false;
   bool isAvailabilityChecked = false;
@@ -265,7 +265,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                   foregroundColor:
                       MaterialStateProperty.all<Color>(Colors.white),
                   backgroundColor: MaterialStateProperty.all<Color>(
-                      isDateAvailable ? Colors.blue : Colors.grey),
+                      isDateAvailable ? Colors.deepPurple.shade100 : Colors.deepPurple.shade50),
                   padding: MaterialStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 15)),
                 ),
@@ -281,7 +281,10 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                       }
                     : null,
 
-                child: const Text('Save My Event'),
+                child: const Text('Save My Event', style: TextStyle(
+                  color: Colors.deepPurple,
+                ),
+                ),
               ),
       ],
     );
