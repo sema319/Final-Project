@@ -169,12 +169,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      title: Text("خطأ"),
-                      content: Text("الرجاء تعبئة كافة الحقول"),
+                      title: Text("error"),
+                      content: Text("Please fill in all the fields"),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: Text("حسناً"),
+                          child: Text("Ok"),
                         ),
                       ],
                     ),

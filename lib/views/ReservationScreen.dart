@@ -23,10 +23,10 @@ class ReservationScreen extends StatefulWidget {
 class ReservationScreenPageState extends State<ReservationScreen> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Reservation Screen')),
-        body: const Center(child: DatePickerExample()),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
       ),
     );
   }

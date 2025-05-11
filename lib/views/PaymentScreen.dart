@@ -28,7 +28,7 @@ class PaymentScreenPageState extends State<PaymentScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "لتأكيد عملية الحجز، يجب دفع عربون.",
+              "To confirm the reservation, a deposit is required.",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),

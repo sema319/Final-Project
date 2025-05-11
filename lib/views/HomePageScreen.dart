@@ -49,7 +49,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.deepPurple.shade200,
               ),
               child: Text(
                 'Menu',
@@ -60,7 +60,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.home),
+              leading: Icon(Icons.event),
               title: Text('My Events'),
               onTap: () {
                 Navigator.pop(context);
@@ -176,7 +176,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                                     ),
                                   ),
                                   Text(
-                                    project.capacity.toString(),
+                                    project.address.toString(),
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -277,7 +277,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                                 ),
                               ),
                               subtitle: Text(
-                                project.capacity.toString(),
+                                project.address.toString(),
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -369,7 +369,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                                 ),
                               ),
                               subtitle: Text(
-                                project.capacity.toString(),
+                                project.address.toString(),
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -460,7 +460,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                                 ),
                               ),
                               subtitle: Text(
-                                project.capacity.toString(),
+                                project.address.toString(),
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -552,7 +552,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                                 ),
                               ),
                               subtitle: Text(
-                                project.capacity.toString(),
+                                project.address.toString(),
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -647,7 +647,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                                 ),
                               ),
                               subtitle: Text(
-                                project.capacity.toString(),
+                                project.address.toString(),
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -738,7 +738,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                                 ),
                               ),
                               subtitle: Text(
-                                project.capacity.toString(),
+                                project.address.toString(),
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -829,7 +829,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                                 ),
                               ),
                               subtitle: Text(
-                                project.capacity.toString(),
+                                project.address.toString(),
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
