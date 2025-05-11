@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:finalproject/views/BusinessDetailScreen.dart';
-import 'package:finalproject/views/ReservationDetailScreen.dart';
 import 'package:flutter/material.dart';
 import '../Utils/clientConfig.dart';
 import '../models/BusinessModel.dart';

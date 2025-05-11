@@ -6,7 +6,6 @@ import 'package:finalproject/views/EventsScreen.dart';
 import 'package:finalproject/views/HomePageScreen.dart';
 import 'package:finalproject/views/PaymentScreen.dart';
 import 'package:finalproject/views/RegisterScreen.dart';
-import 'package:finalproject/views/ReservationDetailScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Utils/Utils.dart';
