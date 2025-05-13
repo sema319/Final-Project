@@ -59,20 +59,19 @@ class EditProfileScreenPageState extends State<EditProfileScreen> {
     var userID = await prefs.get('token');
     var url = "users/updateUser.php?userID=" + userID.toString()+ "&firstName=" + _txtFirstName.text + "&lastName=" + _txtLastName.text +
         "&phoneNumber=" + _txtPhoneNumber.text ;
-    final response = await http.get(Uri.parse(serverPath + url));
-    print(serverPath + url);
-    String? savedName = prefs.getString('firstName');
-    String? savedlastName = prefs.getString('lastName');
-    String? savedphoneNumber = prefs.getString('phoneNumber');
-    print('Saved first name: $savedName');
-    if(_txtFirstName.text != "" && _txtLastName.text != "" && _txtPhoneNumber.text != "" && _txtPhoneNumber.text != "")
+
+    if(_txtFirstName.text != "" && _txtLastName.text != "" && _txtPhoneNumber.text != "" )
     {
+      final response = await http.get(Uri.parse(serverPath + url));
+      print(serverPath + url);
 
       await prefs.setString('firstName', _txtFirstName.text);
       await prefs.setString('lastName', _txtLastName.text);
       await prefs.setString('phoneNumber', _txtPhoneNumber.text);
+      String? savedName = prefs.getString('firstName');
+      String? savedlastName = prefs.getString('lastName');
+      String? savedphoneNumber = prefs.getString('phoneNumber');
       savedName = prefs.getString('firstName');
-      print('Saved first name: $savedName');
       Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const EditProfileScreen(title: 'edit profile',))
