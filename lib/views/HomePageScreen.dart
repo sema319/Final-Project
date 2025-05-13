@@ -78,7 +78,9 @@ class HomepagescreenPageState extends State<Homepagescreen> {
               title: Text('Profile'),
               onTap: () {
                 Navigator.pop(context);
-                // Navigate to Profile
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const EditProfileScreen(title: 'edit profile',)));
               },
             ),
             ListTile(
