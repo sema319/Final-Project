@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:finalproject/views/BusinessDetailScreen.dart';
 import 'package:flutter/material.dart';
 import '../Utils/clientConfig.dart';
 import '../models/BusinessModel.dart';
@@ -37,7 +35,7 @@ class BusinessMangerScreenPageState extends State<BusinessMangerScreen> {
           if (projectSnap.hasError) {
             print(projectSnap.error);
             return Center(
-              child: Text('שגיאה, נסה שוב',
+              child: Text("Error, try again.",
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
             );
           }
@@ -48,7 +46,7 @@ class BusinessMangerScreenPageState extends State<BusinessMangerScreen> {
 
             if (businesses.isEmpty) {
               return Center(
-                child: Text('אין תוצאות',
+                child: Text("No Results.",
                     style: TextStyle(fontSize: 23, color: Colors.black)),
               );
             } else {

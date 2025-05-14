@@ -57,7 +57,7 @@ class EventsScreenPageState extends State<EventsScreen> {
                 height: MediaQuery.of(context).size.height * 2,
                 child: Align(
                   alignment: Alignment.center,
-                  child: Text('אין תוצאות',
+                  child: Text("No results.",
                       style: TextStyle(fontSize: 23, color: Colors.black)),
                 ),
               );
@@ -135,9 +135,9 @@ class EventsScreenPageState extends State<EventsScreen> {
               );
             }
           } else if (projectSnap.hasError) {
-            print("error:" + projectSnap.error.toString());
+            print("Error:" + projectSnap.error.toString());
             return Center(
-              child: Text('שגיאה, נסה שוב',
+              child: Text("Error, try again.",
                   style: TextStyle(
                       fontSize: 22, fontWeight: FontWeight.bold)),
             );

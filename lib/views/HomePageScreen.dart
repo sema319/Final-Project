@@ -80,7 +80,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                 Navigator.pop(context);
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const EditProfileScreen(title: 'edit profile',)));
+                      MaterialPageRoute(builder: (context) => const EditProfileScreen(title: 'Edit Profile',)));
               },
             ),
             ListTile(
@@ -126,7 +126,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                 print(projectSnap.error);
                 return Center(
                   child: Text(
-                    'שגיאה, נסה שוב',
+                    "Error, try again.",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 );
@@ -139,7 +139,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'אין תוצאות',
+                        "No results.",
                         style: TextStyle(fontSize: 23, color: Colors.black),
                       ),
                     ),
@@ -232,7 +232,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                 print(projectSnap.error);
                 return Center(
                   child: Text(
-                    'שגיאה, נסה שוב',
+                    "Error, try again.",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 );
@@ -245,7 +245,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'אין תוצאות',
+                        "No results.",
                         style: TextStyle(fontSize: 23, color: Colors.black),
                       ),
                     ),
@@ -324,7 +324,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                 print(projectSnap.error);
                 return Center(
                   child: Text(
-                    'שגיאה, נסה שוב',
+                    "Error, try again.",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 );
@@ -337,7 +337,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'אין תוצאות',
+                        "No results.",
                         style: TextStyle(fontSize: 23, color: Colors.black),
                       ),
                     ),
@@ -415,7 +415,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                 print(projectSnap.error);
                 return Center(
                   child: Text(
-                    'שגיאה, נסה שוב',
+                    "Error, try again.",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 );
@@ -428,7 +428,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'אין תוצאות',
+                        "No results.",
                         style: TextStyle(fontSize: 23, color: Colors.black),
                       ),
                     ),
@@ -507,7 +507,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                 print(projectSnap.error);
                 return Center(
                   child: Text(
-                    'שגיאה, נסה שוב',
+                    "Error, try again.",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 );
@@ -520,7 +520,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'אין תוצאות',
+                        "No results.",
                         style: TextStyle(fontSize: 23, color: Colors.black),
                       ),
                     ),
@@ -602,7 +602,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                 print(projectSnap.error);
                 return Center(
                   child: Text(
-                    'שגיאה, נסה שוב',
+                    "Error, try again.",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 );
@@ -615,7 +615,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'אין תוצאות',
+                        "No results.",
                         style: TextStyle(fontSize: 23, color: Colors.black),
                       ),
                     ),
@@ -693,7 +693,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                 print(projectSnap.error);
                 return Center(
                   child: Text(
-                    'שגיאה, נסה שוב',
+                    "Error, try again.",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 );
@@ -706,7 +706,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'אין תוצאות',
+                        "No results.",
                         style: TextStyle(fontSize: 23, color: Colors.black),
                       ),
                     ),
@@ -784,7 +784,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                 print(projectSnap.error);
                 return Center(
                   child: Text(
-                    'שגיאה, נסה שוב',
+                    "Error, try again.",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 );
@@ -797,7 +797,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'אין תוצאות',
+                        "No results.",
                         style: TextStyle(fontSize: 23, color: Colors.black),
                       ),
                     ),

@@ -42,7 +42,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
       else
         {
           var uti = new Utils();
-          uti.showMyDialog(context, "חובה", "כל השדות חובה");
+          uti.showMyDialog(context, "Required", "All fields are required.");
         }
     }
 
@@ -64,7 +64,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
             TextField(
               controller: _txtFirstName,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'enter your name'),
+                  border: OutlineInputBorder(), hintText: 'Enter your Name'),
             ),
             Text(
               "Last name*:",
@@ -74,7 +74,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
               controller: _txtLastName,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'enter your last name'),
+                  hintText: 'Enter your Last Name'),
             ),
             Text(
               "Password*:",
@@ -83,7 +83,7 @@ class RegisterScreenPageState extends State<RegisterScreen> {
             TextField(
               controller: _txtPassword,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'enter a password'),
+                  border: OutlineInputBorder(), hintText: 'Enter a Password'),
             ),
             Text(
               "PhoneNumber*:",
@@ -91,8 +91,9 @@ class RegisterScreenPageState extends State<RegisterScreen> {
             ),
             TextField(
               controller: _txtPhoneNumber,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'enter your phone number'),
+                  border: OutlineInputBorder(), hintText: 'Enter your PhoneNumber'),
             ),
 
             TextButton(

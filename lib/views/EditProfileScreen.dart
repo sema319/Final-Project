@@ -80,7 +80,7 @@ class EditProfileScreenPageState extends State<EditProfileScreen> {
     else
     {
       var uti = new Utils();
-      uti.showMyDialog(context, "חובה", "כל השדות חובה");
+      uti.showMyDialog(context, "Required", "All fields are required.");
     }
   }
 
@@ -114,17 +114,17 @@ class EditProfileScreenPageState extends State<EditProfileScreen> {
 
               controller: _txtFirstName,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'enter your name'),
+                  border: OutlineInputBorder(), hintText: 'Enter your Name'),
             ),
             Text(
-              "Last name*:",
+              "Last Name*:",
               style: TextStyle(fontSize: 20),
             ),
             TextField(
               controller: _txtLastName,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'enter your last name'),
+                  hintText: 'Enter your Last Name'),
             ),
 
             Text(
@@ -134,7 +134,7 @@ class EditProfileScreenPageState extends State<EditProfileScreen> {
             TextField(
               controller: _txtPhoneNumber,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'enter your phone number'),
+                  border: OutlineInputBorder(), hintText: 'Enter your PhoneNumber'),
             ),
 
             TextButton(

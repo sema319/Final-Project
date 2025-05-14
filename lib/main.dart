@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     } on SocketException catch (_) {
       // print('not connected to internet');// print(result);
       var uti = new Utils();
-      uti.showMyDialog(context, "אין אינטרנט", "האפליקציה דורשת חיבור לאינטרנט, נא להתחבר בבקשה");
+      uti.showMyDialog(context, "No internet", "The app requires an internet connection. Please connect.");
       return;
     }
   }
@@ -81,9 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // Navigator.pop(context);
     if(checkLoginModel.fromJson(jsonDecode(response.body)).userID == 0)
     {
-      // return 'ת.ז ו/או הסיסמה שגויים';
       var uti = new Utils();
-      uti.showMyDialog(context, "Error", "phone or email is wrong");
+      uti.showMyDialog(context, "Error", "phone or password is wrong");
     }
     else
     {
@@ -140,9 +139,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
             TextField(
               controller: _txtPhone,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'enter your PhoneNumber'
+                  hintText: 'Enter your PhoneNumber'
               ),
             ),
 
@@ -154,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
               controller: _txtPassword,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'enter your Password'
+                  hintText: 'Enter your Password'
               ),
             ),
 
@@ -164,26 +164,24 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: () {
                 if (_txtPhone.text.isEmpty || _txtPassword.text.isEmpty) {
-                  // إذا واحد من الحقول فاضي
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                      title: Text("error"),
+                      title: Text("Error"),
                       content: Text("Please fill in all the fields"),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: Text("Ok"),
+                          child: Text("OK"),
                         ),
                       ],
                     ),
                   );
                 } else {
-                  // إذا الحقول معبّاة، كمل عملية تسجيل الدخول
                   checkLogin(context);
                 }
               },
-              child: Text('Login'),
+              child: Text('Log In'),
             ),
 
             Text(

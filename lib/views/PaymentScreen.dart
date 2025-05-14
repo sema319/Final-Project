@@ -1,3 +1,4 @@
+import 'package:finalproject/views/EventsScreen.dart';
 import 'package:flutter/material.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -47,7 +48,6 @@ class PaymentScreenPageState extends State<PaymentScreen> {
     );
   }
 
-  // دالة عرض نافذة إدخال بيانات البطاقة الائتمانية
   void _showCreditCardDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -81,7 +81,7 @@ class PaymentScreenPageState extends State<PaymentScreen> {
                 keyboardType: TextInputType.datetime,
                 decoration: InputDecoration(
                   labelText: "Expiration Date",
-                  hintText: "MM/YY",
+                  hintText: "1225",
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -92,7 +92,7 @@ class PaymentScreenPageState extends State<PaymentScreen> {
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: "CVV",
-                  hintText: "***",
+                  hintText: "123",
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -109,6 +109,9 @@ class PaymentScreenPageState extends State<PaymentScreen> {
               child: Text("Submit"),
               onPressed: () {
                 _processPayment();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const EventsScreen(title: 'My Events',)));
                 Navigator.of(context).pop();
               },
             ),
@@ -117,8 +120,6 @@ class PaymentScreenPageState extends State<PaymentScreen> {
       },
     );
   }
-
-  // دالة لتنفيذ عملية الدفع (مؤقتة)
   void _processPayment() {
     print("Processing Payment...");
     print("Card Number: ${cardNumberController.text}");
