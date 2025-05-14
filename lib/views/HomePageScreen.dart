@@ -3,13 +3,12 @@ import 'package:finalproject/views/EditProfileScreen.dart';
 import 'package:finalproject/views/BusinessDetailScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert'; // Import for JSON decoding
+import 'dart:convert';
 import 'package:finalproject/models/BusinessModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Utils/clientConfig.dart';
-import 'EventsScreen.dart'; // Ensure this import is correct for your BusinessModel class
-import 'package:finalproject/main.dart'; // Ensure this import is correct for your BusinessModel class
+import 'EventsScreen.dart';
+import 'package:finalproject/main.dart';
 
 class Homepagescreen extends StatefulWidget {
   const Homepagescreen({super.key, required this.title});

@@ -11,7 +11,6 @@ class BusinessMangerScreen extends StatefulWidget {
 
   @override
   State<BusinessMangerScreen> createState() => BusinessMangerScreenPageState();
-// State<PaymentScreen> createState() => PaymentScreenPageState();
 }
 
 class BusinessMangerScreenPageState extends State<BusinessMangerScreen> {

@@ -2,7 +2,6 @@ import 'package:finalproject/Utils/Utils.dart';
 import 'package:finalproject/Utils/clientConfig.dart';
 import 'package:finalproject/views/HomePageScreen.dart';
 import 'package:flutter/material.dart';
-import '../models/UserModel.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterScreen extends StatefulWidget {
@@ -32,8 +31,6 @@ class RegisterScreenPageState extends State<RegisterScreen> {
                  "&password=" + _txtPassword.text + "&phone=" + _txtPhoneNumber.text;
           final response = await http.get(Uri.parse(serverPath + url));
           print(serverPath + url);
-          // setState(() { });
-          // Navigator.pop(context);
           Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',))

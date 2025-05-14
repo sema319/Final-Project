@@ -1,10 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:finalproject/views/BusinessMangerScreen.dart';
-import 'package:finalproject/views/EditProfileScreen.dart';
-import 'package:finalproject/views/EventsScreen.dart';
 import 'package:finalproject/views/HomePageScreen.dart';
-import 'package:finalproject/views/PaymentScreen.dart';
 import 'package:finalproject/views/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -58,10 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        // print('connected to internet');// print(result);// return 1;
       }
     } on SocketException catch (_) {
-      // print('not connected to internet');// print(result);
       var uti = new Utils();
       uti.showMyDialog(context, "No internet", "The app requires an internet connection. Please connect.");
       return;
@@ -72,28 +66,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future checkLogin(BuildContext context) async {
 
-    //   SharedPreferences prefs = await SharedPreferences.getInstance();
-    //  String? getInfoDeviceSTR = prefs.getString("getInfoDeviceSTR");
     var url = "checkLogin/checkLogin.php?phone=" + _txtPhone.text + "&password=" + _txtPassword.text;
     final response = await http.get(Uri.parse(serverPath + url));
     print(serverPath + url);
-    // setState(() { });
-    // Navigator.pop(context);
     if(checkLoginModel.fromJson(jsonDecode(response.body)).userID == 0)
     {
       var uti = new Utils();
       uti.showMyDialog(context, "Error", "phone or password is wrong");
     }
     else
-    {
-      // print("SharedPreferences 1");
+    {;
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', checkLoginModel.fromJson(jsonDecode(response.body)).userID!.toString());
       await prefs.setString('phone', _txtPhone.text);
       await prefs.setString('password', _txtPassword.text);
 
-      // await prefs.setString('userType', checkLoginModel.fromJson(jsonDecode(response.body)).userTypeID!);
-      // return null;
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const Homepagescreen(title: 'Home Page',)));
@@ -122,9 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
     appBar: AppBar(
-
-      //  backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      ),
+    ),
 
       body: Center(
 
