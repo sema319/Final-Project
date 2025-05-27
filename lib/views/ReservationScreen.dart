@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:finalproject/views/EventsScreen.dart';
 import 'package:finalproject/views/PaymentScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -21,7 +22,7 @@ class ReservationScreenPageState extends State<ReservationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor:Theme.of(context).colorScheme.primary,
         title: Text(widget.title),
       ),
       body: const Center(child: DatePickerExample()),
@@ -274,7 +275,7 @@ class _DatePickerExampleState extends State<DatePickerExample>
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const PaymentScreen(title: 'Payment')),
+                                  const EventsScreen(title: 'My Events')),
                         );
                       }
                     : null,

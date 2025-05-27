@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'package:finalproject/models/BusinessModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Utils/clientConfig.dart';
+import '../models/UserModel.dart';
 import 'EventsScreen.dart';
 import 'package:finalproject/main.dart';
 
@@ -18,6 +19,7 @@ class Homepagescreen extends StatefulWidget {
   @override
   State<Homepagescreen> createState() => HomepagescreenPageState();
 }
+
 
 class HomepagescreenPageState extends State<Homepagescreen> {
 
@@ -32,7 +34,6 @@ class HomepagescreenPageState extends State<Homepagescreen> {
         context,
         MaterialPageRoute(builder: (context) =>  BusinessDetailScreen(title: businessName!, bussID: bussID,)));
   }
-
 
 
   @override
@@ -161,9 +162,7 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                             child: ListTile(
                               enabled: true,
                               onTap: () {
-
                                 openBussView(project.businessID, project.businessName);
-
                               },
                               title:
                               Column(
@@ -269,21 +268,33 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                               onTap: () {
                                 openBussView(project.businessID, project.businessName);
                               },
-                              title: Text(
-                                project.businessName!,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              subtitle: Text(
-                                project.address.toString(),
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                              title:
+                              Column(
+                                children: [
+                                  Text(
+                                    project.businessName!,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    project.address.toString(),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  CachedNetworkImage(
+                                    width: 100,
+                                    height: 60,
+                                    placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                    imageUrl: project.imageURL,
+                                  ),
+                                ],
                               ),
                               isThreeLine: false,
                             ),
@@ -361,21 +372,33 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                               onTap: () {
                                 openBussView(project.businessID, project.businessName);
                               },
-                              title: Text(
-                                project.businessName!,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              subtitle: Text(
-                                project.address.toString(),
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                              title:
+                              Column(
+                                children: [
+                                  Text(
+                                    project.businessName!,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    project.address.toString(),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  CachedNetworkImage(
+                                    width: 100,
+                                    height: 60,
+                                    placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                    imageUrl: project.imageURL,
+                                  ),
+                                ],
                               ),
                               isThreeLine: false,
                             ),
@@ -452,21 +475,33 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                               onTap: () {
                                 openBussView(project.businessID, project.businessName);
                               },
-                              title: Text(
-                                project.businessName!,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              subtitle: Text(
-                                project.address.toString(),
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                              title:
+                              Column(
+                                children: [
+                                  Text(
+                                    project.businessName!,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    project.address.toString(),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  CachedNetworkImage(
+                                    width: 100,
+                                    height: 60,
+                                    placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                    imageUrl: project.imageURL,
+                                  ),
+                                ],
                               ),
                               isThreeLine: false,
                             ),
@@ -544,21 +579,33 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                               onTap: () {
                                 openBussView(project.businessID, project.businessName);
                               },
-                              title: Text(
-                                project.businessName!,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              subtitle: Text(
-                                project.address.toString(),
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                              title:
+                              Column(
+                                children: [
+                                  Text(
+                                    project.businessName!,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    project.address.toString(),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  CachedNetworkImage(
+                                    width: 100,
+                                    height: 60,
+                                    placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                    imageUrl: project.imageURL,
+                                  ),
+                                ],
                               ),
                               isThreeLine: false,
                             ),
@@ -639,21 +686,33 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                               onTap: () {
                                 openBussView(project.businessID, project.businessName);
                               },
-                              title: Text(
-                                project.businessName!,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              subtitle: Text(
-                                project.address.toString(),
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                              title:
+                              Column(
+                                children: [
+                                  Text(
+                                    project.businessName!,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    project.address.toString(),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  CachedNetworkImage(
+                                    width: 100,
+                                    height: 60,
+                                    placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                    imageUrl: project.imageURL,
+                                  ),
+                                ],
                               ),
                               isThreeLine: false,
                             ),
@@ -730,21 +789,33 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                               onTap: () {
                                 openBussView(project.businessID, project.businessName);
                               },
-                              title: Text(
-                                project.businessName!,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              subtitle: Text(
-                                project.address.toString(),
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                              title:
+                              Column(
+                                children: [
+                                  Text(
+                                    project.businessName!,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    project.address.toString(),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  CachedNetworkImage(
+                                    width: 100,
+                                    height: 60,
+                                    placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                    imageUrl: project.imageURL,
+                                  ),
+                                ],
                               ),
                               isThreeLine: false,
                             ),
@@ -821,21 +892,33 @@ class HomepagescreenPageState extends State<Homepagescreen> {
                               onTap: () {
                                 openBussView(project.businessID, project.businessName);
                               },
-                              title: Text(
-                                project.businessName!,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              subtitle: Text(
-                                project.address.toString(),
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
+                              title:
+                              Column(
+                                children: [
+                                  Text(
+                                    project.businessName!,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Text(
+                                    project.address.toString(),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  CachedNetworkImage(
+                                    width: 100,
+                                    height: 60,
+                                    placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                    imageUrl: project.imageURL,
+                                  ),
+                                ],
                               ),
                               isThreeLine: false,
                             ),
